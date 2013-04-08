@@ -1,8 +1,10 @@
-package com.riktamtech.picapoco;
+package com.riktamtech.picapoco.ui;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+
+import com.riktamtech.picapoco.R;
 
 public class SplashActivity extends Activity {
 
