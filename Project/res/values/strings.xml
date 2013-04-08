@@ -4,5 +4,11 @@
     <string name="app_name">picapoco</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="registration_title">Registrieren</string>
+    <string name="email_input_title">E-Mail-Adresse</string>
+    <string name="Password_input_title">Passwort</string>
+    <string name="Username_input_title">Nutzername</string>
+    <string name="toggle_infotext">Ja, akzeptiere die AGBs.</string>
+    <string name="registerButton_text">Kostenlos  registrieren</string>
 
 </resources>
