@@ -93,13 +93,13 @@
             android:background="@drawable/body_seperator" />
 
         <TextView
-            android:clickable="true"
             android:id="@+id/HomeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/tab_home_selector" />
+            android:background="@drawable/tab_home_selector"
+            android:clickable="true" />
     </LinearLayout>
 
 </RelativeLayout>
