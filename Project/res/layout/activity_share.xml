@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/share_title"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/header_seperator" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ToggleButton
+                        android:id="@+id/SharePublicToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/switchbutton_selector"
+                        android:textOff=""
+                        android:textOn="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:gravity="left"
+                        android:text="@string/sharePublicText"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginTop="14dp" >
+
+                    <ToggleButton
+                        android:id="@+id/ShareFriendsToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/switchbutton_selector"
+                        android:textOff=""
+                        android:textOn="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:gravity="left"
+                        android:text="@string/shareWithFriends"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ToggleButton
+                        android:id="@+id/ShareNonMembersToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/switchbutton_selector"
+                        android:textOff=""
+                        android:textOn="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:gravity="left"
+                        android:text="@string/ShareWithNonMember"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/shareMessageEditText"
+                    android:layout_width="370dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="93dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:inputType="textMultiLine" >
+                </EditText>
+
+                <LinearLayout
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="93dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/EmailIdTextview"
+                        android:layout_width="265dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/input_bg"
+                        android:ems="10"
+                        android:hint="@string/email_input_title"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="6dp"
+                        android:textSize="12sp" >
+                    </EditText>
+
+                    <RelativeLayout
+                        android:id="@+id/AdressbuchRelativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="true" >
+
+                        <TextView
+                            android:id="@+id/AdressbuchTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="22dp"
+                            android:text="@string/adressbuchString"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/AdressbuchArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/AdressbuchTextView"
+                            android:layout_alignTop="@+id/AdressbuchTextView"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toRightOf="@+id/AdressbuchTextView"
+                            android:background="@drawable/arrow"
+                            android:clickable="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp" >
+
+                    <ToggleButton
+                        android:id="@+id/PrivatToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/switchbutton_selector"
+                        android:checked="true"
+                        android:textOff=""
+                        android:textOn="" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:gravity="left"
+                        android:text="@string/SharePrivat"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/body_seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp" >
+
+            <ImageView
+                android:id="@+id/CloseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/AcceptButton"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="14dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_close_selector" />
+
+            <ImageView
+                android:id="@+id/AcceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingLeft="14dp"
+                android:paddingRight="20dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_accept_selector" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

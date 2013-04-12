@@ -266,27 +266,31 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="8dp" >
+            android:layout_marginTop="4dp" >
 
-            <TextView
+            <ImageView
                 android:id="@+id/HomeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/tab_home_selector"
-                android:clickable="true" />
+                android:clickable="true"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_home_selector" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/addFriendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/tab_add_friend_selector"
-                android:clickable="true" />
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="20dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_add_friend_selector" />
         </RelativeLayout>
     </LinearLayout>
 

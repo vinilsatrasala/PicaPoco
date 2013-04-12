@@ -3,45 +3,46 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bg"
-    android:orientation="vertical" >
+    android:background="@color/app_bg" >
 
     <LinearLayout
+        android:id="@+id/titleLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_bg"
+        android:layout_above="@+id/tabLinearLayout"
         android:orientation="vertical"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:paddingTop="50dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/book_title_icon" />
-
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/input_bg"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="12sp" >
-        </EditText>
+        android:paddingTop="12dp" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/myFriends_title"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/header_seperator" />
+
+        <ListView
+            android:id="@+id/friendslistView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
             android:layout_marginTop="18dp"
-            android:text="@string/editBookTitleText"
-            android:textSize="12sp" />
+            android:background="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
+            android:paddingLeft="1dp" >
+        </ListView>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/tabLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -56,33 +57,31 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
             android:layout_marginTop="4dp" >
 
             <ImageView
-                android:id="@+id/CloseButton"
+                android:id="@+id/HomeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/AcceptButton"
                 android:clickable="true"
-                android:paddingLeft="16dp"
-                android:paddingRight="14dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
                 android:paddingTop="4dp"
-                android:src="@drawable/tab_close_selector" />
+                android:src="@drawable/tab_home_selector" />
 
             <ImageView
-                android:id="@+id/AcceptButton"
+                android:id="@+id/Menu_AcceptButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:clickable="true"
-                android:paddingLeft="14dp"
+                android:paddingLeft="16dp"
                 android:paddingRight="20dp"
                 android:paddingTop="4dp"
-                android:src="@drawable/tab_accept_selector" />
+                android:src="@drawable/tab_menu_selector" />
         </RelativeLayout>
     </LinearLayout>
 

@@ -57,5 +57,13 @@ consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
 sed diam voluptua. 
 At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
     <string name="Info_title">Infos &amp; Preise</string>
+    <string name="myFriends_title">MEINE FREUNDE</string>
+    <string name="staticUserGender_Age">männlich, 24 Jahre</string>
+    <string name="share_title">Design mit Freunden teilen</string>
+    <string name="sharePublicText">Design öffentlich teilen  |  + 500 Diamanten</string>
+    <string name="shareWithFriends">Design mit allen Freunden teilen  |  + 200 Diamanten</string>
+    <string name="ShareWithNonMember">Mit Personen teilen, die noch kein Mitglied sind</string>
+    <string name="adressbuchString">Adressbuch</string>
+    <string name="SharePrivat">Privat</string>
 
 </resources>

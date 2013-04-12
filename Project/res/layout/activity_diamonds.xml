@@ -92,14 +92,15 @@
             android:layout_height="1dp"
             android:background="@drawable/body_seperator" />
 
-        <TextView
+        <ImageView
             android:id="@+id/HomeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/tab_home_selector"
-            android:clickable="true" />
+            android:clickable="true"
+            android:paddingLeft="12dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:src="@drawable/tab_home_selector" />
     </LinearLayout>
 
 </RelativeLayout>
