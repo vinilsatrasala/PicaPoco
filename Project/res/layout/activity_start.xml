@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/menu_Left"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/menu_Right"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/menu_lft_bg"
+                android:orientation="vertical"
+                android:paddingBottom="2dp"
+                android:paddingTop="6dp"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:id="@+id/PublicDesignsLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/publicDesigns"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_publicDesigns"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/publicDesigns"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/publicDesigns"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/menu_seperator" />
+
+                <RelativeLayout
+                    android:id="@+id/friendDesignsLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/friendsDesigns"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_friendDesigns"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/friendsDesigns"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/friendsDesigns"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/menu_seperator" />
+
+                <RelativeLayout
+                    android:id="@+id/myDesignsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/myDesigns"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_myDesigns"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/myDesigns"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/myDesigns"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menu_Right"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:background="@drawable/menu_rht_bg"
+                android:orientation="vertical"
+                android:paddingBottom="2dp"
+                android:paddingTop="6dp"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:id="@+id/myProfileLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/Profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_Profile"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/Profile"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/Profile"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/menu_seperator" />
+
+                <RelativeLayout
+                    android:id="@+id/DiamondsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/Diamonds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_Diamonds"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/Diamonds"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/Diamonds"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/menu_seperator" />
+
+                <RelativeLayout
+                    android:id="@+id/FriendsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/Friends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_Friends"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/Friends"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/Friends"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/menu_seperator" />
+
+                <RelativeLayout
+                    android:id="@+id/infoPriceLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/info_Price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_Info"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/info_Price"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/info_Price"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/menu_seperator" />
+
+                <RelativeLayout
+                    android:id="@+id/logoutLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/Logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/menu_Logout"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/Logout"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/Logout"
+                        android:background="@drawable/arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/body_seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" >
+
+            <ImageView
+                android:id="@+id/HomeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_home_selector" />
+
+            <ImageView
+                android:id="@+id/addAlbumButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/MenuButton"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="14dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_album_selector" />
+
+            <ImageView
+                android:id="@+id/MenuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="20dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_menu_selector" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

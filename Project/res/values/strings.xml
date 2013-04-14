@@ -65,5 +65,13 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
     <string name="ShareWithNonMember">Mit Personen teilen, die noch kein Mitglied sind</string>
     <string name="adressbuchString">Adressbuch</string>
     <string name="SharePrivat">Privat</string>
+    <string name="menu_publicDesigns">Öffentliche Designs</string>
+    <string name="menu_friendDesigns">Designs von Freunden</string>
+    <string name="menu_myDesigns">Meine Designs</string>
+    <string name="menu_Profile">Mein Profil</string>
+    <string name="menu_Diamonds">Meine Diamanten</string>
+    <string name="menu_Friends">Meine Freunde</string>
+    <string name="menu_Info">Infos &amp; Preise</string>
+    <string name="menu_Logout">Abmelden</string>
 
 </resources>

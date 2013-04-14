@@ -16,14 +16,19 @@
         <activity
             android:name="com.riktamtech.picapoco.ui.SplashActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity android:name=".ui.MyFriendsActivity" >
+        </activity>
+        <activity android:name=".ui.StartActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MyFriendsActivity" >
-        </activity>
+        <activity android:name=".ui.MyDiamonds"></activity>
+        <activity android:name=".ui.InfoPriceActivity"></activity>
+        <activity android:name=".ui.MyProfileActivity"></activity>
     </application>
 
 </manifest>
