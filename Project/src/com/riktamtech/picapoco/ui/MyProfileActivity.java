@@ -1,20 +1,23 @@
 package com.riktamtech.picapoco.ui;
 
-import com.riktamtech.picapoco.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
+
+import com.riktamtech.picapoco.R;
 
 public class MyProfileActivity extends Activity implements OnClickListener {
 	private boolean isInEditMode = false;
 	private ImageView menu_confirmButton;
 	private ImageView homeButton;
 	private ViewSwitcher profileViewSwitcher;
+	private FrameLayout friendsFrameButton;
+	private FrameLayout friendRequestsButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +26,23 @@ public class MyProfileActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_myprofile);
 		menu_confirmButton = (ImageView) findViewById(R.id.Menu_AcceptButton);
 		homeButton = (ImageView) findViewById(R.id.HomeButton);
+		friendsFrameButton = (FrameLayout) findViewById(R.id.FriendsFrameButton);
+		friendRequestsButton = (FrameLayout) findViewById(R.id.FriendRequestsFrameButton);
 		profileViewSwitcher = (ViewSwitcher) findViewById(R.id.profileViewSwitcher);
+
 		homeButton.setOnClickListener(this);
 		menu_confirmButton.setOnClickListener(this);
-
+		friendsFrameButton.setOnClickListener(this);
+		friendRequestsButton.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.HomeButton:
-			startActivity(new Intent(MyProfileActivity.this, StartActivity.class));
+			startActivity(new Intent(MyProfileActivity.this,
+					StartActivity.class)
+					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.Menu_AcceptButton:
 			if (!isInEditMode) {
@@ -50,9 +59,19 @@ public class MyProfileActivity extends Activity implements OnClickListener {
 
 			}
 			break;
+		case R.id.FriendsFrameButton:
+			startActivity(new Intent(MyProfileActivity.this,
+					MyFriendsActivity.class)
+					.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+			break;
+
+		case R.id.FriendRequestsFrameButton:
+			startActivity(new Intent(MyProfileActivity.this,
+					FriendRequestsActivity.class));
+			break;
+
 		default:
 			break;
 		}
 	}
-
 }

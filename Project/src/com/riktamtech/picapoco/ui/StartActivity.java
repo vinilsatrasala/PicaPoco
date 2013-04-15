@@ -57,6 +57,7 @@ public class StartActivity extends Activity implements OnClickListener {
 		myDiamonds.setOnClickListener(this);
 		infoPrice.setOnClickListener(this);
 		myProfile.setOnClickListener(this);
+		logout.setOnClickListener(this);
 	}
 
 	@Override
@@ -91,6 +92,9 @@ public class StartActivity extends Activity implements OnClickListener {
 		case R.id.myProfileLayout:
 			startActivity(new Intent(StartActivity.this,
 					MyProfileActivity.class));
+			break;
+		case R.id.logoutLayout:
+			startActivity(new Intent(StartActivity.this, LoginActivity.class));
 			break;
 		default:
 			break;

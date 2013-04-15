@@ -47,7 +47,8 @@ public class MyFriendsActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.HomeButton:
 			startActivity(new Intent(MyFriendsActivity.this,
-					StartActivity.class));
+					StartActivity.class)
+					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.Menu_AcceptButton:
 			if (!isInEditMode) {
