@@ -71,6 +71,7 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
     <string name="menu_Info">Infos &amp; Preise</string>
     <string name="menu_Logout">Abmelden</string>
     <string name="menu_Login">Anmelden</string>
+    <string name="staticAlbumTitle">1001 Nacht</string>
     <string name="publicAlbumAllowModify">Öffentliche und für Freunde freigegebene designs können von Anderen\nangeschaut und/oder gedruckt, aber nicht verändert werden.</string>
     <string name="share_terms">Ich stimme den AGBs zu. Weiterhin versichere, dass alle\nabgebildeten Personen mit einer Veröffentlichung\neinverstanden sind und alle Bildrechte bei mir liegen.</string>
 

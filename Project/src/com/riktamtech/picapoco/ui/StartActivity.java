@@ -1,7 +1,5 @@
 package com.riktamtech.picapoco.ui;
 
-import com.riktamtech.picapoco.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.origamilabs.library.views.StaggeredGridView;
+import com.riktamtech.picapoco.R;
+import com.riktamtech.picapoco.adapters.HomeGridAdapter;
 
 public class StartActivity extends Activity implements OnClickListener {
 	private LinearLayout leftMenu;
@@ -51,6 +53,13 @@ public class StartActivity extends Activity implements OnClickListener {
 				.findViewById(R.id.infoPriceLayout);
 		logout = (RelativeLayout) rightMenu.findViewById(R.id.logoutLayout);
 
+		HomeGridAdapter adapter = new HomeGridAdapter(StartActivity.this);
+		StaggeredGridView gridView = (StaggeredGridView) findViewById(R.id.staggeredGridView);
+		gridView.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+		MyDesigns.setOnClickListener(this);
+		FriendsDesigns.setOnClickListener(this);
+		PublicDesigns.setOnClickListener(this);
 		homeButton.setOnClickListener(this);
 		menuButton.setOnClickListener(this);
 		myFriends.setOnClickListener(this);

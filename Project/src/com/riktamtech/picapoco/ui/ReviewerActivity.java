@@ -3,6 +3,7 @@ package com.riktamtech.picapoco.ui;
 import com.riktamtech.picapoco.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -96,14 +97,17 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.EditTitleButton:
-
+			startActivity(new Intent(ReviewerActivity.this,
+					EditAlbumTitle.class));
 			break;
-		case R.id.ShareButton:
 
+		case R.id.ShareButton:
+			startActivity(new Intent(ReviewerActivity.this, ShareActivity.class));
 			break;
 
 		case R.id.HomeSaveButton:
-
+			startActivity(new Intent(ReviewerActivity.this, StartActivity.class)
+					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 
 		case R.id.CommentsButton:
@@ -116,6 +120,8 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 
 		case R.id.AboutButton:
 
+			startActivity(new Intent(ReviewerActivity.this,
+					InfoPriceActivity.class));
 			break;
 
 		case R.id.SortAlbumButton:

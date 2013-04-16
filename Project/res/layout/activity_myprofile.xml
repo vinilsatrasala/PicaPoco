@@ -339,7 +339,7 @@
                         android:text="@string/staticUserName"
                         android:textSize="12sp" />
 
-                    <LinearLayout
+                    <RadioGroup
                         android:id="@+id/GenderRadioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -351,6 +351,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/radiobutton_selector"
                             android:checked="true"
+                            android:onClick="onToggle"
                             android:textOff=""
                             android:textOn=""
                             android:textSize="12sp" />
@@ -369,6 +370,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:background="@drawable/radiobutton_selector"
+                            android:onClick="onToggle"
                             android:textOff=""
                             android:textOn=""
                             android:textSize="12sp" />
@@ -380,7 +382,7 @@
                             android:layout_marginLeft="6dp"
                             android:text="@string/staticUserGenderFemale"
                             android:textSize="12sp" />
-                    </LinearLayout>
+                    </RadioGroup>
 
                     <EditText
                         android:id="@+id/AgeEditText"

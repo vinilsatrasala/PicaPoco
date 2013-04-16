@@ -13,6 +13,7 @@ import android.widget.ImageView;
 public class ForeignProfileActivity extends Activity implements OnClickListener {
 	private ImageView homeButton, addFriendButton;
 	private FrameLayout friendsFrameButton;
+	private FrameLayout designFrameButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,12 @@ public class ForeignProfileActivity extends Activity implements OnClickListener 
 		setContentView(R.layout.activity_foreignprofile);
 		addFriendButton = (ImageView) findViewById(R.id.addFriendButton);
 		homeButton = (ImageView) findViewById(R.id.HomeButton);
+		designFrameButton = (FrameLayout) findViewById(R.id.DesignFrameButton);
 		friendsFrameButton = (FrameLayout) findViewById(R.id.FriendsFrameButton);
 		homeButton.setOnClickListener(this);
 		addFriendButton.setOnClickListener(this);
 		friendsFrameButton.setOnClickListener(this);
+		designFrameButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -35,7 +38,7 @@ public class ForeignProfileActivity extends Activity implements OnClickListener 
 			startActivity(new Intent(ForeignProfileActivity.this,
 					StartActivity.class)
 					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-		
+
 			break;
 		case R.id.FriendsFrameButton:
 			startActivity(new Intent(ForeignProfileActivity.this,
@@ -45,6 +48,12 @@ public class ForeignProfileActivity extends Activity implements OnClickListener 
 		case R.id.addFriendButton:
 			startActivity(new Intent(ForeignProfileActivity.this,
 					AddFriendActivity.class));
+			break;
+		case R.id.DesignFrameButton:
+			startActivity(new Intent(ForeignProfileActivity.this,
+					StartActivity.class)
+					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			break;
 		default:
 			break;
 		}
