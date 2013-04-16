@@ -100,8 +100,8 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
     <string name="address">Anschrift (keine Packstation möglich)</string>
     <string name="male">Herr</string>
     <string name="female">Frau</string>
-    <string name="firstName"></string>
-    <string name="lastName"></string>
+    <string name="firstName">Vorname</string>
+    <string name="lastName">Nachname</string>
     <string name="company">Firma (Optional) :</string>
     <string name="road">Strasse</string>
     <string name="no">Nr:</string>
@@ -109,12 +109,15 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
     <string name="Location">Ort</string>
     <string name="Country">Land</string>
     <string name="euro">EUR</string>
-    <string-array name="quantitySpinner">
+
+    <string-array name="quantitySpinner">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string name="loremipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
 </resources>
