@@ -56,9 +56,9 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/input_bg"
                     android:ems="10"
-                    android:textSize="12sp"
                     android:inputType="textEmailAddress"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/Password_input_title"
@@ -75,9 +75,9 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/input_bg"
                     android:ems="10"
-                    android:textSize="12sp"
                     android:inputType="textPassword"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,9 +101,9 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/input_bg"
                     android:ems="10"
-                    android:textSize="12sp"
                     android:inputType="text"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -122,7 +122,10 @@
             <ToggleButton
                 android:id="@+id/acceptTermSwitch"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/switchbutton_selector"
+                android:textOff=""
+                android:textOn="" />
 
             <TextView
                 android:id="@+id/AcceptTermsText"

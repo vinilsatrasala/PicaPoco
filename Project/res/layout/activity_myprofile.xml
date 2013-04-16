@@ -360,7 +360,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="6dp"
-                            android:text="@string/staticUserGender" />
+                            android:text="@string/staticUserGender"
+                            android:textSize="12sp" />
 
                         <ToggleButton
                             android:id="@+id/femaleRadioButton"
@@ -377,7 +378,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="6dp"
-                            android:text="@string/staticUserGenderFemale" />
+                            android:text="@string/staticUserGenderFemale"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <EditText
