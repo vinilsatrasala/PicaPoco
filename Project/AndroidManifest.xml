@@ -29,6 +29,13 @@
         <activity android:name=".ui.MyDiamonds"></activity>
         <activity android:name=".ui.InfoPriceActivity"></activity>
         <activity android:name=".ui.MyProfileActivity"></activity>
+        <activity android:name=".ui.FriendRequestsActivity"></activity>
+        <activity android:name=".ui.ForeignFriendsActivity"></activity>
+        <activity android:name=".ui.ForeignProfileActivity"></activity>
+        <activity android:name=".ui.AddFriendActivity"></activity>
+        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.ForgotPassword"></activity>
+        <activity android:name=".ui.RegisterActivity"></activity>
     </application>
 
 </manifest>

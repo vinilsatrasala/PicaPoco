@@ -21,8 +21,7 @@
     <string name="mydiamonds_title">Meine Diamanten</string>
     <string name="myDiamonds">Meine Diamanten</string>
     <string name="staticDiamondsValue">12.555</string>
-    <string name="myDiamondsInfo">Einlösen von Diamanten    
-Kurzer Text Rabattsystem? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </string>
+    <string name="myDiamondsInfo">Einlösen von Diamanten \nKurzer Text Rabattsystem? Lorem ipsum dolor sit amet, consetetur \nsadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et \ndolore magna aliquyam erat, sed diam voluptua. </string>
     <string name="friendRequest_title">Freundschaftsanfrage</string>
     <string name="friendRequestDetail1">Möchtest Du</string>
     <string name="StaticfriendRequestDetail1">Max Mustermann</string>
@@ -51,13 +50,11 @@ Kurzer Text Rabattsystem? Lorem ipsum dolor sit amet, consetetur sadipscing elit
     <string name="RespondFriendRequestText">Hallo, ich finde Deine eFotobücher toll und würde Dich gerne \n in meine Freundesliste aufnehmen.</string>
     <string name="rejectRequest">Ablehnen</string>
     <string name="acceptRequest">Annehmen</string>
-    <string name="InfoandPrice">Lorem ipsum dolor sit amet. 
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat 
-
-sed diam voluptua. 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+    <string name="InfoandPrice">Lorem ipsum dolor sit amet.\nconsetetur sadipscing elitr, sed diam nonumy\neirmod tempor invidunt ut labore et dolore magna aliquyam erat,\nsed diam voluptua. At vero eos et accusam et justo duo\ndolores et ea rebum. Stet clita kasd gubergren, no sea\ntakimata sanctus est Lorem ipsum dolor sit amet. Lorem\nipsum dolor sit amet, consetetur sadipscing elitr, sed diam\nnonumy eirmod tempor invidunt ut labore et dolore magna\naliquyam erat\n\nsed diam voluptua. 
+At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd gubergren, no sea takimata sanctus est\nLorem ipsum dolor sit amet.</string>
     <string name="Info_title">Infos &amp; Preise</string>
     <string name="myFriends_title">MEINE FREUNDE</string>
+    <string name="foreignFriends_title">Persil\'s FREUNDE</string>
     <string name="staticUserGender_Age">männlich, 24 Jahre</string>
     <string name="share_title">Design mit Freunden teilen</string>
     <string name="sharePublicText">Design öffentlich teilen  |  + 500 Diamanten</string>
@@ -73,6 +70,9 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
     <string name="menu_Friends">Meine Freunde</string>
     <string name="menu_Info">Infos &amp; Preise</string>
     <string name="menu_Logout">Abmelden</string>
+    <string name="menu_Login">Anmelden</string>
+    <string name="publicAlbumAllowModify">Öffentliche und für Freunde freigegebene designs können von Anderen\nangeschaut und/oder gedruckt, aber nicht verändert werden.</string>
+    <string name="share_terms">Ich stimme den AGBs zu. Weiterhin versichere, dass alle\nabgebildeten Personen mit einer Veröffentlichung\neinverstanden sind und alle Bildrechte bei mir liegen.</string>
 
     <!-- Alert Dialog Texts -->
     <string name="designer_alert">Diese Seite wird von unseren \n Grafikern neu gestaltet.</string>
