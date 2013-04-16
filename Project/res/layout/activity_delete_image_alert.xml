@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg" >
+
+    <TextView
+        android:id="@+id/designAlertTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="20dip"
+        android:drawableTop="@drawable/trash_dialog"
+        android:gravity="center_horizontal"
+        android:text="@string/delete_image_alert"
+        android:textSize="18sp" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/body_seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" >
+
+            <ImageView
+                android:id="@+id/rejectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/AcceptButton"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="20dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_close_selector" />
+
+            <ImageView
+                android:id="@+id/AcceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="20dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_accept_selector" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
