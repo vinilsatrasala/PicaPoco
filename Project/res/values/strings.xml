@@ -74,4 +74,47 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
     <string name="menu_Info">Infos &amp; Preise</string>
     <string name="menu_Logout">Abmelden</string>
 
+    <!-- Alert Dialog Texts -->
+    <string name="designer_alert">Diese Seite wird von unseren \n Grafikern neu gestaltet.</string>
+    <string name="delete_text_alert">Dieses TextBild wird von der Seite gelöscht.</string>
+    <string name="delete_image_alert">Dieses Bild wird von der Seite gelöscht.</string>
+
+    <!-- print page 1 Texts -->
+    <string name="print_page_one_heading">Drucken</string>
+    <string name="print_size">Grösse</string>
+    <string name="print_size_a4">A4</string>
+    <string name="print_size_a3">A3</string>
+    <string name="cover">Cover</string>
+    <string name="cover_hard">Hardcover</string>
+    <string name="cover_soft">Softcover</string>
+    <string name="paper">Papier</string>
+    <string name="paper_matt">Seidenmatt</string>
+    <string name="paper_glossy">Hochglanz</string>
+
+    <!-- print page 2 Texts -->
+    <string name="print_page_two_heading">Buch zum Druk freigeben</string>
+    <string name="including_book_design">Buch inkl. Design</string>
+    <string name="off_by_diamonds">Rabatt durch Diamanten</string>
+    <string name="shipping">Versand</string>
+    <string name="total_amount">Gesamtbetrag</string>
+    <string name="address">Anschrift (keine Packstation möglich)</string>
+    <string name="male">Herr</string>
+    <string name="female">Frau</string>
+    <string name="firstName"></string>
+    <string name="lastName"></string>
+    <string name="company">Firma (Optional) :</string>
+    <string name="road">Strasse</string>
+    <string name="no">Nr:</string>
+    <string name="zip">PLZ</string>
+    <string name="Location">Ort</string>
+    <string name="Country">Land</string>
+    <string name="euro">EUR</string>
+    <string-array name="quantitySpinner">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
 </resources>
