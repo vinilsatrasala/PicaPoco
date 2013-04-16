@@ -17,6 +17,7 @@ import com.riktamtech.picapoco.ui.AddFriendActivity;
 import com.riktamtech.picapoco.ui.ForeignFriendsActivity;
 import com.riktamtech.picapoco.ui.ForeignProfileActivity;
 import com.riktamtech.picapoco.ui.MyFriendsActivity;
+import com.riktamtech.picapoco.ui.StartActivity;
 
 public class FriendsAdapter extends BaseAdapter implements OnClickListener {
 
@@ -67,9 +68,12 @@ public class FriendsAdapter extends BaseAdapter implements OnClickListener {
 					.findViewById(R.id.FriendsFrameButton);
 			holder.pictureFrame = (FrameLayout) row
 					.findViewById(R.id.ProfilePicFrame);
+			holder.designsFrameButton = (FrameLayout) row
+					.findViewById(R.id.DesignFrameButton);
 			holder.addFriend.setOnClickListener(this);
 			holder.friendsFrameButton.setOnClickListener(this);
 			holder.pictureFrame.setOnClickListener(this);
+			holder.designsFrameButton.setOnClickListener(this);
 			row.setTag(holder);
 		} else {
 			holder = (ViewHolder) row.getTag();
@@ -102,7 +106,7 @@ public class FriendsAdapter extends BaseAdapter implements OnClickListener {
 		TextView trash;
 		TextView addFriend;
 		LinearLayout designsFriendsLayout;
-		FrameLayout friendsFrameButton, pictureFrame;
+		FrameLayout friendsFrameButton, pictureFrame, designsFrameButton;
 	}
 
 	@Override
@@ -127,6 +131,11 @@ public class FriendsAdapter extends BaseAdapter implements OnClickListener {
 			context.startActivity(new Intent(context,
 					ForeignProfileActivity.class));
 
+			break;
+
+		case R.id.DesignFrameButton:
+			context.startActivity(new Intent(context, StartActivity.class)
+					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		default:
 			break;
