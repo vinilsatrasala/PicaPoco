@@ -9,6 +9,7 @@
         android:targetSdkVersion="17" />
 
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -25,11 +26,6 @@
         <activity
             android:name=".ui.StartActivity"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.MyDiamonds"
@@ -97,6 +93,31 @@
         </activity>
         <activity
             android:name=".ui.ActivityAlbumSort"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.WebViewActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.StyleSelectActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.HomeScreenActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.AlbumCatalogInfoActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.ImagePickerActivity"
             android:screenOrientation="landscape" >
         </activity>
     </application>
