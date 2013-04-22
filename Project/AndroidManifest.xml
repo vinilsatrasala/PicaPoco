@@ -87,6 +87,18 @@
             android:name=".ui.ShareActivity"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".ui.PrintScreenOneActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.PrintScreenTwoActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".ui.ActivityAlbumSort"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

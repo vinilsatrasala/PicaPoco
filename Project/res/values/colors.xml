@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="app_bg">#EEEEEE</color>
     <color name="white">#F7F7F7</color>
+    <color name="pencil_white">#FFFFFF</color>
+    <color name="pencil_grey">#AAABAD</color>
+    <color name="pencil_darkgrey">#535351</color>
+    <color name="pencil_black">#000000</color>
+    <color name="pencil_yellow">#FEED01</color>
+    <color name="pencil_orange">#FF9C00</color>
+    <color name="pencil_red">#F10000</color>
+    <color name="pencil_maroon">#870218</color>
+    <color name="pencil_pink">#FFFFFF</color>
+    <color name="pencil_lightPurple">#B869CA</color>
+        <color name="pencil_purple">#62018F</color>
+         <color name="link_color">#2A5070</color>
     
+
 </resources>

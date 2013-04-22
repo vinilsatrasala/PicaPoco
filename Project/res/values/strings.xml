@@ -19,6 +19,7 @@
     <string name="newUserRegisterText">Neu hier? Jetzt kostenlos registrieren.</string>
     <string name="editBookTitleText">HINWEIS: Der Titel wird auf den Buchrücken gedruckt.</string>
     <string name="mydiamonds_title">Meine Diamanten</string>
+    <string name="editTextActivity_title">Text hinzufügen</string>
     <string name="myDiamonds">Meine Diamanten</string>
     <string name="staticDiamondsValue">12.555</string>
     <string name="myDiamondsInfo">Einlösen von Diamanten \nKurzer Text Rabattsystem? Lorem ipsum dolor sit amet, consetetur \nsadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et \ndolore magna aliquyam erat, sed diam voluptua. </string>
@@ -120,5 +121,7 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
     </string-array>
 
     <string name="loremipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="sort_title">Seitenfolge ändern</string>
+    <string name="ShareHintText">Hallo, kennst Du schon Picapoco? Du kannst Dir dort kostenlos\nFotobücher gestalten lassen und Deine schönsten Erinnerungen\nmit Freunden teilen. Schau mal, dieses Design habe ich gestalten\nlassen.</string>
 
 </resources>

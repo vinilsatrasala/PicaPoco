@@ -33,7 +33,8 @@
             android:baselineAligned="false"
             android:orientation="horizontal" >
 
-            <LinearLayout
+            <RadioGroup
+                android:id="@+id/radioGroupSize"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -46,7 +47,7 @@
                     android:layout_margin="5dp"
                     android:text="@string/print_size" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/paperSizeA4RadioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,6 +60,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/radiobutton_selector"
                         android:checked="true"
+                        android:onClick="onToggle"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="12sp" />
@@ -68,22 +70,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@+id/paperSizeA4"
                         android:text="@string/print_size_a4" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/paperSizeA3RadioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal" >
 
                     <ToggleButton
                         android:id="@+id/paperSizeA3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/paperSizeA4"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/radiobutton_selector"
-                        android:checked="true"
+                        android:checked="false"
+                        android:onClick="onToggle"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="12sp" />
@@ -91,13 +89,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/paperSizeA4"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/paperSizeA3"
                         android:text="@string/print_size_a3" />
-                </LinearLayout>
-            </LinearLayout>
+                </RelativeLayout>
+            </RadioGroup>
 
-            <LinearLayout
+            <RadioGroup
+                android:id="@+id/radioGroupCover"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -110,7 +112,7 @@
                     android:layout_margin="5dp"
                     android:text="@string/cover" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/paperCoverHardRadioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -123,6 +125,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/radiobutton_selector"
                         android:checked="true"
+                        android:onClick="onToggle"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="12sp" />
@@ -132,22 +135,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@+id/hardCover"
                         android:text="@string/cover_hard" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/paperCoverSoftRadioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal" >
 
                     <ToggleButton
                         android:id="@+id/softCover"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/hardCover"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/radiobutton_selector"
-                        android:checked="true"
+                        android:checked="false"
+                        android:onClick="onToggle"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="12sp" />
@@ -155,13 +154,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/hardCover"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/softCover"
                         android:text="@string/cover_soft" />
-                </LinearLayout>
-            </LinearLayout>
+                </RelativeLayout>
+            </RadioGroup>
 
-            <LinearLayout
+            <RadioGroup
+                android:id="@+id/radioGroupPaper"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -174,7 +177,7 @@
                     android:layout_margin="5dp"
                     android:text="@string/paper" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/paperMattRadioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -187,6 +190,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/radiobutton_selector"
                         android:checked="true"
+                        android:onClick="onToggle"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="12sp" />
@@ -196,22 +200,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@+id/paperMatt"
                         android:text="@string/paper_matt" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/paperCoverGlossyRadioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal" >
 
                     <ToggleButton
-                        android:id="@+id/hardSoft"
+                        android:id="@+id/paperGlossy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/paperMatt"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/radiobutton_selector"
-                        android:checked="true"
+                        android:checked="false"
+                        android:onClick="onToggle"
                         android:textOff=""
                         android:textOn=""
                         android:textSize="12sp" />
@@ -219,11 +219,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/paperMatt"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/paperGlossy"
                         android:text="@string/paper_glossy" />
-                </LinearLayout>
-            </LinearLayout>
+                </RelativeLayout>
+            </RadioGroup>
         </LinearLayout>
     </LinearLayout>
 
@@ -245,14 +248,15 @@
             android:layout_marginTop="4dp" >
 
             <ImageView
-                android:id="@+id/rejectButton"
+                android:id="@+id/CloseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/AcceptButton"
                 android:clickable="true"
-                android:paddingLeft="16dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:paddingTop="4dp"
                 android:src="@drawable/tab_close_selector" />
 
@@ -263,7 +267,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:clickable="true"
-                android:paddingLeft="16dp"
+                android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:paddingTop="4dp"
                 android:src="@drawable/tab_accept_selector" />

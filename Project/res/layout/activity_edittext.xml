@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.riktamtech.picapoco"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/editTextActivity_title"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/header_seperator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/whitePencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white"
+                custom:Color="@color/pencil_white"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/greyPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/grey"
+                custom:Color="@color/pencil_grey"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/darkGreyPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_grey"
+                custom:Color="@color/pencil_darkgrey"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/blackPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/black"
+                custom:Color="@color/pencil_black"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/yellowPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow"
+                custom:Color="@color/pencil_yellow"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/orangePencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/orange"
+                custom:Color="@color/pencil_orange"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/redPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red"
+                custom:Color="@color/pencil_red"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/maroonPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/meroon"
+                custom:Color="@color/pencil_maroon"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/pinkPencil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pink"
+                custom:Color="@color/pencil_pink"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/lightPurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/light_purple"
+                custom:Color="@color/pencil_lightPurple"
+                custom:Position="top" />
+
+            <com.riktamtech.picapoco.customviews.PencilTextview
+                android:id="@+id/purple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/purple"
+                custom:Color="@color/pencil_purple"
+                custom:Position="top" />
+            
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/body_seperator" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp" >
+
+            <ImageView
+                android:id="@+id/CloseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/AcceptButton"
+                android:clickable="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_close_selector" />
+
+            <ImageView
+                android:id="@+id/AcceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp"
+                android:paddingTop="4dp"
+                android:src="@drawable/tab_accept_selector" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

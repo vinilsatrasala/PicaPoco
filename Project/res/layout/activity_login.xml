@@ -56,6 +56,7 @@
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:inputType="textEmailAddress"
+                    android:paddingLeft="4dp"
                     android:singleLine="true" />
             </LinearLayout>
 
@@ -93,6 +94,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:text="@string/forgotPasswordText"
+                            android:textColor="@color/link_color"
                             android:textSize="12sp" />
 
                         <TextView
@@ -116,6 +118,7 @@
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:inputType="textPassword"
+                    android:paddingLeft="4dp"
                     android:singleLine="true" />
             </LinearLayout>
         </LinearLayout>
@@ -166,6 +169,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/fbButton"
                 android:text="@string/facebookLoginText"
+                android:textColor="@color/link_color"
                 android:textSize="12sp" />
 
             <TextView
@@ -188,10 +192,9 @@
             android:id="@+id/registerRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:paddingBottom="12dp"
-            android:paddingTop="12dp"
-          
-            android:clickable="true" >
+            android:paddingTop="12dp" >
 
             <TextView
                 android:id="@+id/RegisterText"
@@ -199,6 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="@string/newUserRegisterText"
+                android:textColor="@color/link_color"
                 android:textSize="12sp" />
 
             <TextView

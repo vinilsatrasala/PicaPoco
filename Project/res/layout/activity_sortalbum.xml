@@ -7,44 +7,31 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/topLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/app_bg"
         android:orientation="vertical"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:paddingTop="50dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/book_title_icon" />
-
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/input_bg"
-            android:ems="10"
-            android:hint="Wunschtitel eingeben"
-            android:inputType="text"
-            android:paddingLeft="4dp"
-            android:singleLine="true"
-            android:textSize="12sp" >
-        </EditText>
+        android:paddingTop="12dp" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="@string/editBookTitleText"
-            android:textSize="12sp" />
+            android:layout_gravity="center_horizontal"
+            android:text="@string/sort_title"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/header_seperator" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/bottomLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -88,5 +75,18 @@
                 android:src="@drawable/tab_accept_selector" />
         </RelativeLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomLinearLayout"
+        android:layout_below="@+id/topLinearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/gridsort" />
 
 </RelativeLayout>

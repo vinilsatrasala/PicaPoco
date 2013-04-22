@@ -55,6 +55,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_publicDesigns"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -88,6 +89,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_friendDesigns"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -121,6 +123,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_myDesigns"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -162,6 +165,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_Profile"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -194,6 +198,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_Diamonds"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -226,6 +231,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_Friends"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -258,6 +264,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_Info"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView
@@ -290,6 +297,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:text="@string/menu_Login"
+                        android:textColor="@color/link_color"
                         android:textSize="12sp" />
 
                     <TextView

@@ -6,21 +6,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class ShareActivity extends Activity implements OnClickListener {
-	private ImageView rejectButton;
+public class ActivityAlbumSort extends Activity implements OnClickListener {
 	private ImageView acceptButton;
+	private ImageView rejectButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		this.getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		setContentView(R.layout.activity_share);
+		setContentView(R.layout.activity_sortalbum);
 		acceptButton = (ImageView) findViewById(R.id.AcceptButton);
 		rejectButton = (ImageView) findViewById(R.id.CloseButton);
 		acceptButton.setOnClickListener(this);
@@ -32,7 +29,8 @@ public class ShareActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.AcceptButton:
-			finish();
+			startActivity(new Intent(ActivityAlbumSort.this,
+					ReviewerActivity.class));
 			break;
 		case R.id.CloseButton:
 			finish();
@@ -40,5 +38,7 @@ public class ShareActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+
 	}
+
 }

@@ -53,7 +53,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/chatLeftButton"
             android:text="1"
-            android:textColor="#AAAAAA"
+            android:textColor="@color/link_color"
             android:textSize="12sp" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="@string/myProfile_title"
+            android:text="@string/staticAlbumTitle"
             android:textSize="16sp" />
 
         <ImageView
@@ -93,6 +93,8 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/chatCountRight"
             android:clickable="true"
+            android:paddingLeft="12dp"
+            android:paddingRight="5dp"
             android:src="@drawable/comment_add" />
 
         <TextView
@@ -101,10 +103,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="5dp"
             android:paddingRight="12dp"
             android:text="1"
-            android:textColor="#AAAAAA"
+            android:textColor="@color/link_color"
             android:textSize="12sp" />
 
         <View
@@ -147,7 +148,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/tab_accept_selector" />
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:src="@drawable/tick_blue" />
             </LinearLayout>
 
             <View
@@ -189,7 +192,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/tab_accept_selector" />
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    android:src="@drawable/tick_blue" />
             </LinearLayout>
 
             <View
