@@ -121,4 +121,33 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
 
     <string name="loremipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
+    <!-- Uploader Screen Strings -->
+
+    <string name="make_free_desing">Kostenlos gestalten lassen</string>
+    <string name="view_or_print_album">Fotobuch ansehen / drucken</string>
+    <string name="more_info">Mehr Informationen</string>
+    <string name="more">Weiter</string>
+    <string name="style">Style</string>
+    <string name="format">Format</string>
+    <string name="imagepickerdefault">0 Fotos gewahlt | Mehr Fotos Wahlen</string>
+    <string name="selectall">Alle wählen</string>
+    <string name="selectnone">Keine wählen</string>
+    <string name="logout">Logout</string>
+    <string name="survey">übersicht</string>
+    <string name="logged_in_as">Eingeloggt als</string>
+    <string name="back">Zurück</string>
+
+    <string-array name="seitenitems">
+        <item>24</item>
+        <item>56</item>
+    </string-array>
+
+    <!-- Album catalog strings -->
+    <string name="albumCatalogActivity_detail"> Dezent, elegant und traditionell auf schwarzem Fotopapier.\nIdeal für besondere Anlässe wie Hochzeiten, Konfirmationen etc. </string>
+    <string name="klassichCatalogActivity_detail"> Stilvoll, variabel und doch besonders dank vieler Hintergrundfotos. \nVerwendbar für jeden Anlass. </string>
+    <string name="modernCatalogActivity_detail">Kraftvoll und außergewöhnlich dank des modernen Leinenhintergrundes. \n</string>
+    <string name="frischCatalogActivity_detail"> Dynamisch, mutig und einzigartig. \nDas etwas andere Fotobuch mit besonderen Effekten. </string>
+    <string name="fotopurCatalogActivity_detail">100% reiner Fotogenuss ohne wenn und aber. \nIdeal für besonders hochwertige Aufnahmen. </string>
+    <string name="vintageCatalogActivity_detail">Ihr Fotobuch wie vor 70 Jahren! Kontrastreich in Schwarz-Weiss gehalten.\n Ideal für zeitlose Erinnerungen. </string>
+
 </resources>

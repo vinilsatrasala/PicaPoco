@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingBottom="15dip"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip"
+    android:paddingTop="15dp" >
+
+    <RelativeLayout
+        android:id="@+id/itemCheckBoxWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <RadioButton
+            android:id="@+id/itemCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:button="@drawable/gallery_checkbox"
+            android:paddingLeft="35dip"
+            android:text="Album"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/infoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/info_icon" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/thumbImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/album" />
+
+</RelativeLayout>
