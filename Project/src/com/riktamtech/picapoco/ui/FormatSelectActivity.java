@@ -10,10 +10,10 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.riktamtech.picapoco.R;
-import com.riktamtech.picapoco.adapters.AlbumGalleryAdaper;
+import com.riktamtech.picapoco.adapters.FormatAdaper;
 import com.riktamtech.picapoco.application.MyApplication;
 
-public class StyleSelectActivity extends Activity implements OnClickListener {
+public class FormatSelectActivity extends Activity implements OnClickListener {
 
 	public TextView nextTextView;
 
@@ -25,7 +25,7 @@ public class StyleSelectActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_style_select);
 
 		GridView gridView = (GridView) findViewById(R.id.gridView1);
-		gridView.setAdapter(new AlbumGalleryAdaper(this));
+		gridView.setAdapter(new FormatAdaper(this));
 
 		nextTextView = (TextView) findViewById(R.id.nextTextView);
 		nextTextView.setOnClickListener(this);
@@ -43,8 +43,8 @@ public class StyleSelectActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		if (v == nextTextView) {
 			// TODO change flow
-			startActivity(new Intent(StyleSelectActivity.this,
-					FormatSelectActivity.class));
+			startActivity(new Intent(FormatSelectActivity.this,
+					ImagePickerActivity.class));
 		}
 
 	}
