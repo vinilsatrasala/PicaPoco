@@ -34,7 +34,8 @@ public class HomeScreenActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.viewOrPrintAlbum:
-
+			startActivity(new Intent(HomeScreenActivity.this,
+					StartActivity.class));
 			break;
 		case R.id.moreInfoTextView:
 
