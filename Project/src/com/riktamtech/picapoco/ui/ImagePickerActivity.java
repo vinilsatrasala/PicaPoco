@@ -305,60 +305,63 @@ public class ImagePickerActivity extends Activity implements OnClickListener {
 			selectFlagEnabled = !selectFlagEnabled;
 			((BaseAdapter) imagegrid.getAdapter()).notifyDataSetChanged();
 		} else if (v == nextTextView) {
-
-			if (selectedCount < 26) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Achtung");
-				builder.setMessage("Bitte wählen Sie mindestens 26 Fotos")
-						.setCancelable(false)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										// do things
-									}
-								});
-				AlertDialog alert = builder.create();
-				alert.show();
-			} else if (MyApplication.currentAlbum.designerType == MyApplication.designerGrafiker) {
-				if (selectedCount > 1000) {
-					AlertDialog.Builder builder = new AlertDialog.Builder(this);
-					builder.setMessage("Max. (1000) Zahl an Fotos erreicht !")
-							.setCancelable(false)
-							.setPositiveButton("OK",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											// do things
-										}
-									});
-					AlertDialog alert = builder.create();
-					alert.show();
-				}
-				// else
-				// startActivity(new Intent(ImagePickerActivity.this,
-				// AlbumOverViewActivity.class));
-
-			} else if (MyApplication.currentAlbum.designerType == MyApplication.designerEigene) {
-				if (selectedCount > 400) {
-					AlertDialog.Builder builder = new AlertDialog.Builder(this);
-					builder.setMessage("Max. (400) Zahl an Fotos erreicht !")
-							.setCancelable(false)
-							.setPositiveButton("OK",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											// do things
-										}
-									});
-					AlertDialog alert = builder.create();
-					alert.show();
-				}
-				// TODO uncomment
-				// else
-				// startActivity(new Intent(ImagePickerActivity.this,
-				// AlbumOverViewActivity.class));
-			}
+			startActivity(new Intent(ImagePickerActivity.this,
+					LoginActivity.class));
+			// if (selectedCount < 26) {
+			// AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			// builder.setTitle("Achtung");
+			// builder.setMessage("Bitte wählen Sie mindestens 26 Fotos")
+			// .setCancelable(false)
+			// .setPositiveButton("OK",
+			// new DialogInterface.OnClickListener() {
+			// public void onClick(DialogInterface dialog,
+			// int id) {
+			// // do things
+			// }
+			// });
+			// AlertDialog alert = builder.create();
+			// alert.show();
+			// } else if (MyApplication.currentAlbum.designerType ==
+			// MyApplication.designerGrafiker) {
+			// if (selectedCount > 1000) {
+			// AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			// builder.setMessage("Max. (1000) Zahl an Fotos erreicht !")
+			// .setCancelable(false)
+			// .setPositiveButton("OK",
+			// new DialogInterface.OnClickListener() {
+			// public void onClick(
+			// DialogInterface dialog, int id) {
+			// // do things
+			// }
+			// });
+			// AlertDialog alert = builder.create();
+			// alert.show();
+			// }
+			// else
+			// startActivity(new Intent(ImagePickerActivity.this,
+			// AlbumOverViewActivity.class));
+			//
+			// } else if (MyApplication.currentAlbum.designerType ==
+			// MyApplication.designerEigene) {
+			// if (selectedCount > 400) {
+			// AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			// builder.setMessage("Max. (400) Zahl an Fotos erreicht !")
+			// .setCancelable(false)
+			// .setPositiveButton("OK",
+			// new DialogInterface.OnClickListener() {
+			// public void onClick(
+			// DialogInterface dialog, int id) {
+			// // do things
+			// }
+			// });
+			// AlertDialog alert = builder.create();
+			// alert.show();
+			// }
+			// // TODO uncomment
+			// // else
+			// // startActivity(new Intent(ImagePickerActivity.this,
+			// // AlbumOverViewActivity.class));
+			// }
 		}
 	}
 }
