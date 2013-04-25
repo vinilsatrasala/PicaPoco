@@ -3,6 +3,7 @@ package com.riktamtech.picapoco.ui;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.adapters.CommentsAdapter;
@@ -222,6 +224,8 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 		rightListView.setAdapter(new CommentsAdapter(ReviewerActivity.this,
 				R.layout.comment_listitem));
 		commentsDialog.show();
+		((TextView) commentsDialog.findViewById(R.id.headerTextView))
+				.setTextColor(Color.BLACK);
 		commentsDialog.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}

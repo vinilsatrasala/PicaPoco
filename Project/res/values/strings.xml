@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">picapoco</string>
+    <string name="app_name">PicaPoco_1.0</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="registration_title">Registrieren</string>
@@ -74,7 +74,7 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
     <string name="menu_Login">Anmelden</string>
     <string name="staticAlbumTitle">1001 Nacht</string>
     <string name="publicAlbumAllowModify">Öffentliche und für Freunde freigegebene designs können von Anderen\nangeschaut und/oder gedruckt, aber nicht verändert werden.</string>
-    <string name="share_terms">Ich stimme den AGBs zu. Weiterhin versichere, dass alle\nabgebildeten Personen mit einer Veröffentlichung\neinverstanden sind und alle Bildrechte bei mir liegen.</string>
+    <string name="share_terms">Ich stimme den &lt;a href="" style="text-decoration: none&#059;">AGBs&lt;/a> zu. Weiterhin versichere, dass alle\nabgebildeten Personen mit einer Veröffentlichung\neinverstanden sind und alle Bildrechte bei mir liegen.</string>
 
     <!-- Alert Dialog Texts -->
     <string name="designer_alert">Diese Seite wird von unseren \n Grafikern neu gestaltet.</string>
@@ -102,14 +102,14 @@ At vero eos et accusam et justo duo dolores et ea rebum.\nStet clita kasd guberg
     <string name="address">Anschrift (keine Packstation möglich)</string>
     <string name="male">Herr</string>
     <string name="female">Frau</string>
-    <string name="firstName">Vorname</string>
-    <string name="lastName">Nachname</string>
+    <string name="firstName">Vorname:</string>
+    <string name="lastName">Nachname:</string>
     <string name="company">Firma (Optional) :</string>
-    <string name="road">Strasse</string>
+    <string name="road">Strasse:</string>
     <string name="no">Nr:</string>
-    <string name="zip">PLZ</string>
-    <string name="Location">Ort</string>
-    <string name="Country">Land</string>
+    <string name="zip">PLZ:</string>
+    <string name="Location">Ort:</string>
+    <string name="Country">Land:</string>
     <string name="euro">EUR</string>
 
     <string-array name="quantitySpinner">

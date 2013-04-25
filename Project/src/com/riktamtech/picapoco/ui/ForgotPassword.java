@@ -1,14 +1,13 @@
 package com.riktamtech.picapoco.ui;
 
-import com.riktamtech.picapoco.R;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.riktamtech.picapoco.R;
 
 public class ForgotPassword extends Activity implements OnClickListener {
 	private TextView requestPasswordButton;
@@ -29,7 +28,7 @@ public class ForgotPassword extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.requestPasswordButton:
-			startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
+			finish();
 			break;
 
 		default:

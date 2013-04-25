@@ -37,12 +37,12 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.LoginButton:
-			startActivity(new Intent(LoginActivity.this, StartActivity.class)
-					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			finish();
 			break;
 		case R.id.registerRelativeLayout:
 			startActivity(new Intent(LoginActivity.this, RegisterActivity.class)
 					.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+			finish();
 			break;
 		case R.id.ForgotPasswordRelativeLayout:
 			startActivity(new Intent(LoginActivity.this, ForgotPassword.class)

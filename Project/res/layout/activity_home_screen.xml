@@ -58,13 +58,12 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <TextView
+    <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:adjustViewBounds="true"
-        android:background="@drawable/circle" />
+        android:src="@drawable/circle" />
 
 </RelativeLayout>

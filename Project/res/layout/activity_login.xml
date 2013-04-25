@@ -55,9 +55,11 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/input_bg"
                     android:ems="10"
+                    android:hint="E-Mail Adresse"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="4dp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -117,9 +119,11 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/input_bg"
                     android:ems="10"
+                    android:hint="Passwort"
                     android:inputType="textPassword"
                     android:paddingLeft="4dp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 

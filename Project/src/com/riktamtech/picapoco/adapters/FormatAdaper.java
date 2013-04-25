@@ -27,8 +27,8 @@ public class FormatAdaper extends BaseAdapter {
 	private int mSelectedPosition = -1;
 
 	private String[] albumnnames = { "Quer", "Quadrat", "Hoch" };
-	private int[] albumResources = { R.drawable.album, R.drawable.klassisch,
-			R.drawable.foto_pur };
+	private int[] albumResources = { R.drawable.quer, R.drawable.quadrat,
+			R.drawable.hoch };
 
 	public FormatAdaper(Context context) {
 		this.activity = (Activity) context;

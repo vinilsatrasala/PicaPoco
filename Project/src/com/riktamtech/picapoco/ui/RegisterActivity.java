@@ -30,8 +30,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.registerButton:
-			startActivity(new Intent(RegisterActivity.this, StartActivity.class)
-					.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			finish();
 			break;
 
 		default:
