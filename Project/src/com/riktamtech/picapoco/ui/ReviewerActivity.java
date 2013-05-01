@@ -1,23 +1,44 @@
 package com.riktamtech.picapoco.ui;
 
+import java.util.ArrayList;
+
+import android.R.integer;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aphidmobile.flip.FlipViewController;
+import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.adapters.CommentsAdapter;
+import com.riktamtech.picapoco.beans.ImageBean;
+import com.riktamtech.picapoco.customviews.CustomImageView;
 
-public class ReviewerActivity extends Activity implements OnClickListener {
+public class ReviewerActivity extends Activity implements OnClickListener,
+		OnTouchListener, OnLongClickListener {
 
 	private ImageView homeSaveButton;
 	private ImageView aboutButton;
@@ -44,6 +65,16 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 	private Dialog commentsDialog;
 	private ImageView commentLeftTop;
 	private ImageView commentRightTop;
+	protected FlipViewController flipView;
+
+	ArrayList<ArrayList<ImageBean>> lPageBeans = new ArrayList<ArrayList<ImageBean>>();
+	private int _xDelta;
+	private int _yDelta;
+	private ImageLoaderConfiguration config;
+	private ImageLoader imageLoader;
+	protected View page;
+	protected ArrayList<View> views = new ArrayList<View>();
+	protected PageHolder holder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +83,23 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		setContentView(R.layout.activity_view_album);
+
+		for (int i = 0; i < 4; i++) {
+			ArrayList<ImageBean> imagebeans = new ArrayList<ImageBean>();
+			for (int j = 0; j < 2; j++) {
+				ImageBean imageBean = new ImageBean();
+				if (j == 0) {
+					imageBean.leftMargin = 50;
+					imageBean.topMargin = 30;
+				} else {
+					imageBean.leftMargin = 150;
+					imageBean.topMargin = 100;
+				}
+				imagebeans.add(imageBean);
+
+			}
+			lPageBeans.add(imagebeans);
+		}
 
 		homeSaveButton = (ImageView) findViewById(R.id.HomeSaveButton);
 		aboutButton = (ImageView) findViewById(R.id.AboutButton);
@@ -91,6 +139,117 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 				.findViewById(R.id.editTextButton);
 		designerTextEditButton = (ImageView) editTextModeLayout
 				.findViewById(R.id.DesignerTextButton);
+		config = new ImageLoaderConfiguration.Builder(ReviewerActivity.this)
+				.memoryCache(new UsingFreqLimitedMemoryCache(5000000))
+				.defaultDisplayImageOptions(DisplayImageOptions.createSimple())
+				.build();
+		imageLoader = ImageLoader.getInstance();
+		imageLoader.init(config);
+
+		flipView = (FlipViewController) findViewById(R.id.flipView);
+
+		flipView.setOverFlipEnabled(false);
+		flipView.setAdapter(new BaseAdapter() {
+			private ViewGroup parent;
+
+			@Override
+			public int getCount() {
+				return 4;
+			}
+
+			@Override
+			public Object getItem(int position) {
+				return position;
+			}
+
+			@Override
+			public long getItemId(int position) {
+				return position;
+			}
+
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+
+				View row = convertView;
+				final Context context = parent.getContext();
+				PageHolder holder = null;
+				if (row == null) {
+
+					LayoutInflater inflater = ((Activity) context)
+							.getLayoutInflater();
+					row = inflater.inflate(R.layout.pagelayout, parent, false);
+					holder = new PageHolder();
+					holder.leftPage = (FrameLayout) row
+							.findViewById(R.id.leftPageFrame);
+					holder.rightPage = (FrameLayout) row
+							.findViewById(R.id.rightPageFrame);
+					holder.liv1 = (ImageView) row.findViewById(R.id.leftIv1);
+					holder.liv2 = (ImageView) row.findViewById(R.id.leftIv2);
+					holder.liv3 = (ImageView) row.findViewById(R.id.leftIv3);
+					holder.liv4 = (ImageView) row.findViewById(R.id.leftIv4);
+					holder.liv5 = (ImageView) row.findViewById(R.id.leftIv5);
+					holder.liv6 = (ImageView) row.findViewById(R.id.leftIv6);
+					holder.liv7 = (ImageView) row.findViewById(R.id.leftIv7);
+					holder.liv8 = (ImageView) row.findViewById(R.id.leftIv8);
+					holder.leftPage
+							.setOnLongClickListener(ReviewerActivity.this);
+					holder.rightPage
+							.setOnLongClickListener(ReviewerActivity.this);
+					row.setTag(holder);
+				} else {
+					holder = (PageHolder) row.getTag();
+
+				}
+				for (int i = 0; i < lPageBeans.get(position).size(); i++) {
+					LayoutParams params = new FrameLayout.LayoutParams(
+							FrameLayout.LayoutParams.WRAP_CONTENT,
+							FrameLayout.LayoutParams.WRAP_CONTENT);
+					switch (i) {
+
+					case 0:
+						holder.liv1.setVisibility(View.VISIBLE);
+						holder.liv1.setTag(holder.liv1.getId(), position);
+						holder.liv1.setTag(holder.liv1.getParent().hashCode(),
+								i);
+						holder.liv1.setTag(position + "" + i);
+
+						params.setMargins(
+								lPageBeans.get(position).get(i).leftMargin,
+								lPageBeans.get(position).get(i).topMargin, 0, 0);
+						holder.leftPage.removeView(holder.liv1);
+						holder.leftPage.addView(holder.liv1, params);
+						imageLoader
+								.displayImage(
+										"http://alicia.mobile9.com/download/thumb/453/120/ironman3_JRzCNY2O.jpg",
+										holder.liv1);
+						break;
+					case 1:
+						holder.liv2.setVisibility(View.VISIBLE);
+						holder.liv2.setTag(holder.liv2.getId(), position);
+						holder.liv2.setTag(holder.liv2.getParent().hashCode(),
+								i);
+
+						params.setMargins(
+								lPageBeans.get(position).get(i).leftMargin,
+								lPageBeans.get(position).get(i).topMargin, 0, 0);
+						holder.leftPage.removeView(holder.liv2);
+
+						holder.leftPage.addView(holder.liv2, params);
+						imageLoader
+								.displayImage(
+										"http://wallpaper.pickywallpapers.com/samsung-reality/thumbnail/iron-man-standing.jpg",
+										holder.liv2);
+						break;
+					default:
+						break;
+					}
+
+				}
+
+				return row;
+			}
+		});
+
 		homeSaveButton.setOnClickListener(this);
 		aboutButton.setOnClickListener(this);
 		printButton.setOnClickListener(this);
@@ -230,4 +389,78 @@ public class ReviewerActivity extends Activity implements OnClickListener {
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
+	static class PageHolder {
+
+		FrameLayout leftPage, rightPage;
+		ImageView liv1, liv2, liv3, liv4, liv5, liv6, liv7, liv8, riv1, riv2,
+				riv3, riv4, riv5, riv6, riv7, riv8;
+	}
+
+	@Override
+	public boolean onTouch(View view, MotionEvent event) {
+		// TODO Auto-generated method stub
+		if (view instanceof ImageView) {
+
+			final int X = (int) event.getRawX();
+			final int Y = (int) event.getRawY();
+			switch (event.getAction() & MotionEvent.ACTION_MASK) {
+			case MotionEvent.ACTION_DOWN:
+				FrameLayout.LayoutParams lParams = (FrameLayout.LayoutParams) view
+						.getLayoutParams();
+				_xDelta = X - lParams.leftMargin;
+				_yDelta = Y - lParams.topMargin;
+				break;
+			case MotionEvent.ACTION_UP:
+				break;
+			case MotionEvent.ACTION_POINTER_DOWN:
+				break;
+			case MotionEvent.ACTION_POINTER_UP:
+				break;
+			case MotionEvent.ACTION_MOVE:
+				FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view
+						.getLayoutParams();
+				layoutParams.leftMargin = X - _xDelta;
+				layoutParams.topMargin = Y - _yDelta;
+				layoutParams.rightMargin = 0;
+				layoutParams.bottomMargin = 0;
+
+				view.setLayoutParams(layoutParams);
+				lPageBeans.get((Integer) view.getTag(view.getId())).get(
+						(Integer) view.getTag(view.getParent().hashCode())).leftMargin = X
+						- _xDelta;
+				lPageBeans.get((Integer) view.getTag(view.getId())).get(
+						(Integer) view.getTag(view.getParent().hashCode())).topMargin = Y
+						- _yDelta;
+
+				break;
+			}
+			((FrameLayout) view.getParent()).invalidate();
+			((LinearLayout) view.getParent().getParent()).invalidate();
+
+		}
+		return true;
+
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		// TODO Auto-generated method stub
+
+		if (v instanceof FrameLayout) {
+
+			if (flipView.isFlipByTouchEnabled()) {
+				flipView.setFlipByTouchEnabled(false);
+				for (int i = 0; i < ((FrameLayout) v).getChildCount(); i++) {
+					((FrameLayout) v).getChildAt(i).setOnTouchListener(
+							ReviewerActivity.this);
+				}
+			} else {
+				flipView.setFlipByTouchEnabled(true);
+				for (int i = 0; i < ((FrameLayout) v).getChildCount(); i++) {
+					((FrameLayout) v).getChildAt(i).setOnTouchListener(null);
+				}
+			}
+		}
+		return true;
+	}
 }
