@@ -69,6 +69,8 @@ public class ServiceRequestHelper {
 
 	// Reviewr urls
 	private static String picapocoreviewerBaseUrl = "http://picapoco.staging.pictureplix.net";
+	public static String picapocoReviewerImageBaseUrl = "http://ppinterface.staging.pictureplix.net/app_staging.php/designPageImageLayer/read/";
+	public static String picapocoReviewerPageBaseUrl = "http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/55a9db5c920d324819a0f93737025ae3bff14a01/";
 	private static String reviewerLogin = picapocoreviewerBaseUrl
 			+ "/de/review/login";
 	private static String fetchDesignUrl = picapocoreviewerBaseUrl
