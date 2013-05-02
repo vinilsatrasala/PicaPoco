@@ -2,13 +2,11 @@ package com.riktamtech.picapoco.ui;
 
 import java.util.ArrayList;
 
-import android.R.integer;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,16 +24,19 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import bin.classes.com.aphidmobile.flip.FlipViewController;
 
-import com.aphidmobile.flip.FlipViewController;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.adapters.CommentsAdapter;
+import com.riktamtech.picapoco.application.MyApplication.ServiceStatusListener;
 import com.riktamtech.picapoco.beans.ImageBean;
-import com.riktamtech.picapoco.customviews.CustomImageView;
+import com.riktamtech.picapoco.beans.ReviewerDesignBean;
+import com.riktamtech.picapoco.services.ServiceRequestHelper;
+import com.riktamtech.picapoco.ui.utils.parseReviewerDesignXml;
 
 public class ReviewerActivity extends Activity implements OnClickListener,
 		OnTouchListener, OnLongClickListener {
@@ -78,11 +79,14 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		setContentView(R.layout.activity_view_album);
+
+		// TODO remove login by changing actual required one
+		new ServiceRequestHelper().reviewerLogin("PO201304303C5F73CC8B",
+				reviewerLoginListener);
 
 		for (int i = 0; i < 4; i++) {
 			ArrayList<ImageBean> imagebeans = new ArrayList<ImageBean>();
@@ -270,7 +274,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.EditTitleButton:
 			startActivity(new Intent(ReviewerActivity.this,
@@ -361,7 +364,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						commentsDialog.dismiss();
 					}
 				});
@@ -370,7 +372,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						commentsDialog.dismiss();
 					}
 				});
@@ -398,7 +399,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 	@Override
 	public boolean onTouch(View view, MotionEvent event) {
-		// TODO Auto-generated method stub
 		if (view instanceof ImageView) {
 
 			final int X = (int) event.getRawX();
@@ -444,8 +444,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 	@Override
 	public boolean onLongClick(View v) {
-		// TODO Auto-generated method stub
-
 		if (v instanceof FrameLayout) {
 
 			if (flipView.isFlipByTouchEnabled()) {
@@ -462,5 +460,41 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 			}
 		}
 		return true;
+	}
+
+	ServiceStatusListener reviewerLoginListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			// TODO handle resposne
+			new ServiceRequestHelper().fetchDesigns(fetchDesignerListener);
+
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+			checkerror(exception);
+		}
+
+	};
+
+	ServiceStatusListener fetchDesignerListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			ReviewerDesignBean designBean = new parseReviewerDesignXml()
+					.parseReviewerDesignXml(object.toString());
+
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+			checkerror(exception);
+		}
+	};
+
+	private void checkerror(Exception exception) {
+		// TODO Auto-generated method stub
+
 	}
 }

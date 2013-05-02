@@ -92,6 +92,7 @@ public class HomeGridAdapter extends BaseAdapter implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.albumLayout:
+			
 			context.startActivity(new Intent(context, ReviewerActivity.class));
 			break;
 		case R.id.add_shareButton:
