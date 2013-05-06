@@ -13,6 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.util.Log;
+
 import com.riktamtech.picapoco.beans.ReviewerDesignBean;
 import com.riktamtech.picapoco.beans.ReviewerDesignLayoutGroups;
 import com.riktamtech.picapoco.beans.ReviewerImageDetailsBean;
@@ -30,13 +32,13 @@ public class parseReviewerDesignXml {
 			Document doc = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder().parse(is);
 			// TODO create Design details bean
-			Element designelement = doc.getElementById("designRequest");
+			Element designelement = (Element)doc.getElementsByTagName("designRequest").item(0);
 			designBean.externalId = XMLFunctionalities.getValue(designelement,
 					"externalId");
 			designBean.designOwnerId = XMLFunctionalities.getValue(
 					designelement, "designOwnerId");
-			designBean.designId = Integer.parseInt(XMLFunctionalities.getValue(
-					designelement, "designId"));
+			designBean.designId = XMLFunctionalities.getValue(designelement,
+					"designId");
 			designBean.designResolution = XMLFunctionalities.getValue(
 					designelement, "designResolution");
 			designBean.bookTitle = XMLFunctionalities.getValue(designelement,
@@ -63,31 +65,33 @@ public class parseReviewerDesignXml {
 				pageBeanDetails.designLayoutGroupsArrayList = new ArrayList<ReviewerDesignLayoutGroups>();
 
 				// TODO Handle layer groups in page
-				NodeList layerNodes = doc
+				NodeList layerNodes = e
 						.getElementsByTagName("designPageLayerGroup");
 				for (int j = 0; j < layerNodes.getLength(); j++) {
 					ReviewerDesignLayoutGroups designLayoutGroups = new ReviewerDesignLayoutGroups();
-					Element layerElements = (Element) layerNodes.item(i);
+					Element layerElements = (Element) layerNodes.item(j);
 					designLayoutGroups.designPageLayerGroupId = Integer
 							.parseInt(XMLFunctionalities.getValue(
-									layerElements, "designPageLayerGroupId"));
+
+							layerElements, "designPageLayerGroupId"));
 					designLayoutGroups.zIndex = Integer
 							.parseInt(XMLFunctionalities.getValue(
 									layerElements, "zIndex"));
 					// TODO Image details
 					designLayoutGroups.reviewerImageDetailsArrayList = new ArrayList<ReviewerImageDetailsBean>();
-					NodeList imageDetailsNodes = doc
+					NodeList imageDetailsNodes = layerElements
 							.getElementsByTagName("designPageImageLayer");
 					for (int k = 0; k < imageDetailsNodes.getLength(); k++) {
 						ReviewerImageDetailsBean imageDetailsBean = new ReviewerImageDetailsBean();
 						Element imageDetailsElements = (Element) imageDetailsNodes
-								.item(i);
+								.item(k);
 						imageDetailsBean.designPageImageLayerId = XMLFunctionalities
 								.getValue(imageDetailsElements,
 										"designPageImageLayerId");
 						imageDetailsBean.designPageImageLayerApiId = XMLFunctionalities
 								.getValue(imageDetailsElements,
 										"designPageImageLayerApiId");
+
 						imageDetailsBean.type = Integer
 								.parseInt(XMLFunctionalities.getValue(
 										imageDetailsElements, "type"));
@@ -133,12 +137,12 @@ public class parseReviewerDesignXml {
 					}// End of Image nodes for loop
 						// TODO Text details
 					designLayoutGroups.reviewerTextDetailsArrayList = new ArrayList<ReviewerTextDetailsBean>();
-					NodeList TextDetailsNodes = doc
+					NodeList TextDetailsNodes = layerElements
 							.getElementsByTagName("designPageTextLayer");
 					for (int k = 0; k < TextDetailsNodes.getLength(); k++) {
 						ReviewerTextDetailsBean textDetailsBean = new ReviewerTextDetailsBean();
 						Element textDetailsElements = (Element) TextDetailsNodes
-								.item(i);
+								.item(k);
 						textDetailsBean.designPageTextLayerId = XMLFunctionalities
 								.getValue(textDetailsElements,
 										"designPageTextLayerId");
@@ -161,10 +165,6 @@ public class parseReviewerDesignXml {
 						textDetailsBean.positionLeft = Integer
 								.parseInt(XMLFunctionalities.getValue(
 										textDetailsElements, "positionLeft"));
-
-						textDetailsBean.type = Integer
-								.parseInt(XMLFunctionalities.getValue(
-										textDetailsElements, "type"));
 						textDetailsBean.rotationAngle = Float
 								.parseFloat(XMLFunctionalities.getValue(
 										textDetailsElements, "rotationAngle"));

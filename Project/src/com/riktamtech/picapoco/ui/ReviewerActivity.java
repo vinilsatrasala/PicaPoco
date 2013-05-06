@@ -4,21 +4,16 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,6 +27,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.adapters.CommentsAdapter;
+import com.riktamtech.picapoco.adapters.ReviewerAlbumAdapter;
 import com.riktamtech.picapoco.application.MyApplication.ServiceStatusListener;
 import com.riktamtech.picapoco.beans.ImageBean;
 import com.riktamtech.picapoco.beans.ReviewerDesignBean;
@@ -85,7 +81,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_view_album);
 
 		// TODO remove login by changing actual required one
-		new ServiceRequestHelper().reviewerLogin("PO201304303C5F73CC8B",
+		new ServiceRequestHelper().reviewerLogin("PO201305065F82238B70",
 				reviewerLoginListener);
 
 		for (int i = 0; i < 4; i++) {
@@ -153,106 +149,107 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		flipView = (FlipViewController) findViewById(R.id.flipView);
 
 		flipView.setOverFlipEnabled(false);
-		flipView.setAdapter(new BaseAdapter() {
-			private ViewGroup parent;
-
-			@Override
-			public int getCount() {
-				return 4;
-			}
-
-			@Override
-			public Object getItem(int position) {
-				return position;
-			}
-
-			@Override
-			public long getItemId(int position) {
-				return position;
-			}
-
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-
-				View row = convertView;
-				final Context context = parent.getContext();
-				PageHolder holder = null;
-				if (row == null) {
-
-					LayoutInflater inflater = ((Activity) context)
-							.getLayoutInflater();
-					row = inflater.inflate(R.layout.pagelayout, parent, false);
-					holder = new PageHolder();
-					holder.leftPage = (FrameLayout) row
-							.findViewById(R.id.leftPageFrame);
-					holder.rightPage = (FrameLayout) row
-							.findViewById(R.id.rightPageFrame);
-					holder.liv1 = (ImageView) row.findViewById(R.id.leftIv1);
-					holder.liv2 = (ImageView) row.findViewById(R.id.leftIv2);
-					holder.liv3 = (ImageView) row.findViewById(R.id.leftIv3);
-					holder.liv4 = (ImageView) row.findViewById(R.id.leftIv4);
-					holder.liv5 = (ImageView) row.findViewById(R.id.leftIv5);
-					holder.liv6 = (ImageView) row.findViewById(R.id.leftIv6);
-					holder.liv7 = (ImageView) row.findViewById(R.id.leftIv7);
-					holder.liv8 = (ImageView) row.findViewById(R.id.leftIv8);
-					holder.leftPage
-							.setOnLongClickListener(ReviewerActivity.this);
-					holder.rightPage
-							.setOnLongClickListener(ReviewerActivity.this);
-					row.setTag(holder);
-				} else {
-					holder = (PageHolder) row.getTag();
-
-				}
-				for (int i = 0; i < lPageBeans.get(position).size(); i++) {
-					LayoutParams params = new FrameLayout.LayoutParams(
-							FrameLayout.LayoutParams.WRAP_CONTENT,
-							FrameLayout.LayoutParams.WRAP_CONTENT);
-					switch (i) {
-
-					case 0:
-						holder.liv1.setVisibility(View.VISIBLE);
-						holder.liv1.setTag(holder.liv1.getId(), position);
-						holder.liv1.setTag(holder.liv1.getParent().hashCode(),
-								i);
-						holder.liv1.setTag(position + "" + i);
-
-						params.setMargins(
-								lPageBeans.get(position).get(i).leftMargin,
-								lPageBeans.get(position).get(i).topMargin, 0, 0);
-						holder.leftPage.removeView(holder.liv1);
-						holder.leftPage.addView(holder.liv1, params);
-						imageLoader
-								.displayImage(
-										"http://alicia.mobile9.com/download/thumb/453/120/ironman3_JRzCNY2O.jpg",
-										holder.liv1);
-						break;
-					case 1:
-						holder.liv2.setVisibility(View.VISIBLE);
-						holder.liv2.setTag(holder.liv2.getId(), position);
-						holder.liv2.setTag(holder.liv2.getParent().hashCode(),
-								i);
-
-						params.setMargins(
-								lPageBeans.get(position).get(i).leftMargin,
-								lPageBeans.get(position).get(i).topMargin, 0, 0);
-						holder.leftPage.removeView(holder.liv2);
-
-						holder.leftPage.addView(holder.liv2, params);
-						imageLoader
-								.displayImage(
-										"http://wallpaper.pickywallpapers.com/samsung-reality/thumbnail/iron-man-standing.jpg",
-										holder.liv2);
-						break;
-					default:
-						break;
-					}
-
-				}
-
-				return row;
-			}
-		});
+		// flipView.setAdapter(new BaseAdapter() {
+		// private ViewGroup parent;
+		//
+		// @Override
+		// public int getCount() {
+		// return 4;
+		// }
+		//
+		// @Override
+		// public Object getItem(int position) {
+		// return position;
+		// }
+		//
+		// @Override
+		// public long getItemId(int position) {
+		// return position;
+		// }
+		//
+		// @Override
+		// public View getView(int position, View convertView, ViewGroup parent)
+		// {
+		//
+		// View row = convertView;
+		// final Context context = parent.getContext();
+		// PageHolder holder = null;
+		// if (row == null) {
+		//
+		// LayoutInflater inflater = ((Activity) context)
+		// .getLayoutInflater();
+		// row = inflater.inflate(R.layout.pagelayout, parent, false);
+		// holder = new PageHolder();
+		// holder.leftPage = (FrameLayout) row
+		// .findViewById(R.id.leftPageFrame);
+		// holder.rightPage = (FrameLayout) row
+		// .findViewById(R.id.rightPageFrame);
+		// holder.liv1 = (ImageView) row.findViewById(R.id.leftIv1);
+		// holder.liv2 = (ImageView) row.findViewById(R.id.leftIv2);
+		// holder.liv3 = (ImageView) row.findViewById(R.id.leftIv3);
+		// holder.liv4 = (ImageView) row.findViewById(R.id.leftIv4);
+		// holder.liv5 = (ImageView) row.findViewById(R.id.leftIv5);
+		// holder.liv6 = (ImageView) row.findViewById(R.id.leftIv6);
+		// holder.liv7 = (ImageView) row.findViewById(R.id.leftIv7);
+		// holder.liv8 = (ImageView) row.findViewById(R.id.leftIv8);
+		// holder.leftPage
+		// .setOnLongClickListener(ReviewerActivity.this);
+		// holder.rightPage
+		// .setOnLongClickListener(ReviewerActivity.this);
+		// row.setTag(holder);
+		// } else {
+		// holder = (PageHolder) row.getTag();
+		//
+		// }
+		// for (int i = 0; i < lPageBeans.get(position).size(); i++) {
+		// LayoutParams params = new FrameLayout.LayoutParams(
+		// FrameLayout.LayoutParams.WRAP_CONTENT,
+		// FrameLayout.LayoutParams.WRAP_CONTENT);
+		// switch (i) {
+		//
+		// case 0:
+		// holder.liv1.setVisibility(View.VISIBLE);
+		// holder.liv1.setTag(holder.liv1.getId(), position);
+		// holder.liv1.setTag(holder.liv1.getParent().hashCode(),
+		// i);
+		// holder.liv1.setTag(position + "" + i);
+		//
+		// params.setMargins(
+		// lPageBeans.get(position).get(i).leftMargin,
+		// lPageBeans.get(position).get(i).topMargin, 0, 0);
+		// holder.leftPage.removeView(holder.liv1);
+		// holder.leftPage.addView(holder.liv1, params);
+		// imageLoader
+		// .displayImage(
+		// "http://alicia.mobile9.com/download/thumb/453/120/ironman3_JRzCNY2O.jpg",
+		// holder.liv1);
+		// break;
+		// case 1:
+		// holder.liv2.setVisibility(View.VISIBLE);
+		// holder.liv2.setTag(holder.liv2.getId(), position);
+		// holder.liv2.setTag(holder.liv2.getParent().hashCode(),
+		// i);
+		//
+		// params.setMargins(
+		// lPageBeans.get(position).get(i).leftMargin,
+		// lPageBeans.get(position).get(i).topMargin, 0, 0);
+		// holder.leftPage.removeView(holder.liv2);
+		//
+		// holder.leftPage.addView(holder.liv2, params);
+		// imageLoader
+		// .displayImage(
+		// "http://wallpaper.pickywallpapers.com/samsung-reality/thumbnail/iron-man-standing.jpg",
+		// holder.liv2);
+		// break;
+		// default:
+		// break;
+		// }
+		//
+		// }
+		//
+		// return row;
+		// }
+		// });
 
 		homeSaveButton.setOnClickListener(this);
 		aboutButton.setOnClickListener(this);
@@ -484,6 +481,14 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		public void onSuccess(Object object) {
 			ReviewerDesignBean designBean = new parseReviewerDesignXml()
 					.parseReviewerDesignXml(object.toString());
+			ReviewerAlbumAdapter adapter = new ReviewerAlbumAdapter(
+					ReviewerActivity.this, designBean,
+					flipView.getMeasuredHeight()
+							/ (double) designBean.getHeight(),
+					(flipView.getMeasuredWidth() / (double) 2)
+							/ flipView.getMeasuredWidth());
+
+			flipView.setAdapter(adapter);
 
 		}
 
