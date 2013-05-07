@@ -19,9 +19,9 @@ public class ReviewerDesignBean {
 	 * @return
 	 */
 	public int getWidth() {
-	
+
 		return Integer.parseInt(designResolution.substring(0,
-				designResolution.indexOf("x")));
+				designResolution.indexOf("x")).trim());
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class ReviewerDesignBean {
 	 */
 	public int getHeight() {
 		return Integer.parseInt(designResolution.substring(designResolution
-				.indexOf("x")+1));
+				.indexOf("x") + 1));
 	}
 
 	public int getChangedDimension(int actualresolutionDimension,

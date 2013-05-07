@@ -81,7 +81,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_view_album);
 
 		// TODO remove login by changing actual required one
-		new ServiceRequestHelper().reviewerLogin("PO201305065F82238B70",
+		new ServiceRequestHelper().reviewerLogin("PO20130507BA14A0D27D",
 				reviewerLoginListener);
 
 		for (int i = 0; i < 4; i++) {
@@ -486,7 +486,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 					flipView.getMeasuredHeight()
 							/ (double) designBean.getHeight(),
 					(flipView.getMeasuredWidth() / (double) 2)
-							/ flipView.getMeasuredWidth());
+							/ designBean.getWidth());
 
 			flipView.setAdapter(adapter);
 

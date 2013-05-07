@@ -1,19 +1,27 @@
 package com.riktamtech.picapoco.adapters;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.ImageView.ScaleType;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.download.ImageDownloader;
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.beans.ReviewerDesignBean;
 import com.riktamtech.picapoco.beans.ReviewerPageBeanDetails;
@@ -103,22 +111,74 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 
 			for (int j = 0; j < leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
 					.size(); j++) {
-				LayoutParams params = new FrameLayout.LayoutParams(
-						FrameLayout.LayoutParams.WRAP_CONTENT,
-						FrameLayout.LayoutParams.WRAP_CONTENT);
+				LayoutParams params;
+				if (leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
+						.get(j).type == 2) {
+					params = new FrameLayout.LayoutParams(
+							FrameLayout.LayoutParams.MATCH_PARENT,
+							FrameLayout.LayoutParams.WRAP_CONTENT);
+				} else {
+					params = new FrameLayout.LayoutParams(
+							(int) (widthScaleRatio * leftPageBean.designLayoutGroupsArrayList
+									.get(i).reviewerImageDetailsArrayList
+									.get(j).width),
+							FrameLayout.LayoutParams.WRAP_CONTENT);
+				}
+
 				params.setMargins(
 						(int) (leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
 								.get(j).positionLeft * widthScaleRatio),
 						(int) (leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
 								.get(j).positionTop * heightScaleRatio), 0, 0);
 				ImageView imageView = new ImageView(context);
+				imageView.setScaleType(ScaleType.FIT_XY);
 				imageView
 						.setTag(leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
 								.get(j).designPageImageLayerApiId);
 				leftPage.addView(imageView, params);
+
 				imageLoader.displayImage(
 						ServiceRequestHelper.picapocoReviewerImageBaseUrl
 								+ leftPageBean.designLayoutGroupsArrayList
+										.get(i).reviewerImageDetailsArrayList
+										.get(j).designPageImageLayerApiId
+								+ ".jpg", imageView);
+
+			}
+		}
+		for (int i = 0; i < rightPageBean.designLayoutGroupsArrayList.size(); i++) {
+
+			for (int j = 0; j < rightPageBean.designLayoutGroupsArrayList
+					.get(i).reviewerImageDetailsArrayList.size(); j++) {
+				LayoutParams params;
+				if (rightPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
+						.get(j).type == 2) {
+					params = new FrameLayout.LayoutParams(
+							FrameLayout.LayoutParams.MATCH_PARENT,
+							FrameLayout.LayoutParams.WRAP_CONTENT);
+				} else {
+					params = new FrameLayout.LayoutParams(
+							(int) (widthScaleRatio * rightPageBean.designLayoutGroupsArrayList
+									.get(i).reviewerImageDetailsArrayList
+									.get(j).width),
+							FrameLayout.LayoutParams.WRAP_CONTENT);
+				}
+
+				params.setMargins(
+						(int) (rightPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
+								.get(j).positionLeft * widthScaleRatio),
+						(int) (rightPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
+								.get(j).positionTop * heightScaleRatio), 0, 0);
+				ImageView imageView = new ImageView(context);
+				imageView.setScaleType(ScaleType.FIT_XY);
+				imageView
+						.setTag(rightPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).designPageImageLayerApiId);
+				rightPage.addView(imageView, params);
+
+				imageLoader.displayImage(
+						ServiceRequestHelper.picapocoReviewerImageBaseUrl
+								+ rightPageBean.designLayoutGroupsArrayList
 										.get(i).reviewerImageDetailsArrayList
 										.get(j).designPageImageLayerApiId
 								+ ".jpg", imageView);
