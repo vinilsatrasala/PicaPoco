@@ -1,6 +1,8 @@
 package com.riktamtech.picapoco.beans;
 
-public class ImageBean {
+import java.io.Serializable;
+
+public class ImageBean implements Serializable {
 
 	public int imageCount, topMargin, leftMargin;
 	

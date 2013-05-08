@@ -1,8 +1,9 @@
 package com.riktamtech.picapoco.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReviewerDesignBean {
+public class ReviewerDesignBean implements Serializable {
 
 	public String externalId = "", designOwnerId = "", bookTitle = "",
 			designResolution = "", designId = "";

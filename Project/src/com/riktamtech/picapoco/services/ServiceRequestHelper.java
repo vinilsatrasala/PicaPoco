@@ -1,7 +1,9 @@
 package com.riktamtech.picapoco.services;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -41,11 +44,7 @@ public class ServiceRequestHelper {
 	private static final String TAG = "ServiceRequestHelper";
 	private int responseCode = 0;
 	public static boolean shouldIKillTask = false;
-	// prod
-	// private static String baseUrlLogin =
-	// "http://api.pppixpremium.prod.pictureplix.net";
-	// public static String baseUrl = "http://pixpremium.de";
-	// Staging
+
 	private static String baseUrlLogin = "http://api.pppixpremium.staging.pictureplix.net";
 	public static String baseUrl = "http://pppixpremium.staging.pictureplix.net";
 
@@ -70,11 +69,13 @@ public class ServiceRequestHelper {
 	// Reviewr urls
 	private static String picapocoreviewerBaseUrl = "http://picapoco.staging.pictureplix.net";
 	public static String picapocoReviewerImageBaseUrl = "http://ppinterface.staging.pictureplix.net/app_staging.php/designPageImageLayer/read/";
-	public static String picapocoReviewerPageBaseUrl = "http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/55a9db5c920d324819a0f93737025ae3bff14a01/";
+	public static String picapocoReviewerPageBaseUrl = "http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/";
 	private static String reviewerLogin = picapocoreviewerBaseUrl
 			+ "/de/review/login";
 	private static String fetchDesignUrl = picapocoreviewerBaseUrl
 			+ "/ajax/review/fetchDesign";
+	private static String updateBookTitleUrl = picapocoreviewerBaseUrl
+			+ "/ajax/review/updateBookTitle?";
 	private static Header[] headers;
 
 	/**
@@ -392,6 +393,18 @@ public class ServiceRequestHelper {
 		new ServiceRequestGetTask(listener).execute(getRequest);
 	}
 
+	public void updateBookTitle(String bookTitle, String designId,
+			ServiceStatusListener listener) throws UnsupportedEncodingException {
+
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("bookTitle", bookTitle));
+		// nameValuePairs.add(new BasicNameValuePair("designId", designId));
+		HttpGet getRequest = new HttpGet(updateBookTitleUrl
+				+ URLEncodedUtils.format(nameValuePairs, "utf-8"));
+		setDefaulHeadersForGet(getRequest);
+		new ServiceRequestGetTask(listener).execute(getRequest);
+	}
+
 	class ServiceRequestTask extends AsyncTask<HttpPost, Object, Object> {
 		WeakReference<ServiceStatusListener> listenerReference;
 
@@ -408,13 +421,11 @@ public class ServiceRequestHelper {
 				HttpPost post = params[0];
 
 				HttpParams httpParameters = new BasicHttpParams();
-				// Set the timeout in milliseconds until a connection is
-				// established.
+
 				int timeoutConnection = 5000;
 				HttpConnectionParams.setConnectionTimeout(httpParameters,
 						timeoutConnection);
-				// Set the default socket timeout (SO_TIMEOUT)
-				// in milliseconds which is the timeout for waiting for data.
+
 				int timeoutSocket = 5000;
 				HttpConnectionParams
 						.setSoTimeout(httpParameters, timeoutSocket);
@@ -456,8 +467,6 @@ public class ServiceRequestHelper {
 					listenerReference.get().onFailure((Exception) result);
 				else {
 					try {
-						// JSONObject jsonObject = new JSONObject(
-						// result.toString());
 
 						if (responseCode == 200) {
 							if (result.equals(""))

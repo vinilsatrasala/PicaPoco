@@ -22,7 +22,7 @@
             android:background="@drawable/book_title_icon" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/albumTitleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

@@ -37,6 +37,7 @@ import com.riktamtech.picapoco.ui.utils.parseReviewerDesignXml;
 public class ReviewerActivity extends Activity implements OnClickListener,
 		OnTouchListener, OnLongClickListener {
 
+	private static final int Intent_Edit_Album_Title = 100;
 	private ImageView homeSaveButton;
 	private ImageView aboutButton;
 	private ImageView printButton;
@@ -63,6 +64,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 	private ImageView commentLeftTop;
 	private ImageView commentRightTop;
 	protected FlipViewController flipView;
+	private ReviewerDesignBean designBean;
 
 	ArrayList<ArrayList<ImageBean>> lPageBeans = new ArrayList<ArrayList<ImageBean>>();
 	private int _xDelta;
@@ -71,7 +73,9 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 	private ImageLoader imageLoader;
 	protected View page;
 	protected ArrayList<View> views = new ArrayList<View>();
-	protected PageHolder holder;
+	private TextView albumTitleTextView;
+
+	public static String externalId = "PO2013050806A5A85333";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +85,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_view_album);
 
 		// TODO remove login by changing actual required one
-		new ServiceRequestHelper().reviewerLogin("PO20130507BA14A0D27D",
+		new ServiceRequestHelper().reviewerLogin(externalId,
 				reviewerLoginListener);
 
 		for (int i = 0; i < 4; i++) {
@@ -100,7 +104,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 			}
 			lPageBeans.add(imagebeans);
 		}
-
+		albumTitleTextView = (TextView) findViewById(R.id.headerTextView);
 		homeSaveButton = (ImageView) findViewById(R.id.HomeSaveButton);
 		aboutButton = (ImageView) findViewById(R.id.AboutButton);
 		printButton = (ImageView) findViewById(R.id.PrintButton);
@@ -149,107 +153,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		flipView = (FlipViewController) findViewById(R.id.flipView);
 
 		flipView.setOverFlipEnabled(false);
-		// flipView.setAdapter(new BaseAdapter() {
-		// private ViewGroup parent;
-		//
-		// @Override
-		// public int getCount() {
-		// return 4;
-		// }
-		//
-		// @Override
-		// public Object getItem(int position) {
-		// return position;
-		// }
-		//
-		// @Override
-		// public long getItemId(int position) {
-		// return position;
-		// }
-		//
-		// @Override
-		// public View getView(int position, View convertView, ViewGroup parent)
-		// {
-		//
-		// View row = convertView;
-		// final Context context = parent.getContext();
-		// PageHolder holder = null;
-		// if (row == null) {
-		//
-		// LayoutInflater inflater = ((Activity) context)
-		// .getLayoutInflater();
-		// row = inflater.inflate(R.layout.pagelayout, parent, false);
-		// holder = new PageHolder();
-		// holder.leftPage = (FrameLayout) row
-		// .findViewById(R.id.leftPageFrame);
-		// holder.rightPage = (FrameLayout) row
-		// .findViewById(R.id.rightPageFrame);
-		// holder.liv1 = (ImageView) row.findViewById(R.id.leftIv1);
-		// holder.liv2 = (ImageView) row.findViewById(R.id.leftIv2);
-		// holder.liv3 = (ImageView) row.findViewById(R.id.leftIv3);
-		// holder.liv4 = (ImageView) row.findViewById(R.id.leftIv4);
-		// holder.liv5 = (ImageView) row.findViewById(R.id.leftIv5);
-		// holder.liv6 = (ImageView) row.findViewById(R.id.leftIv6);
-		// holder.liv7 = (ImageView) row.findViewById(R.id.leftIv7);
-		// holder.liv8 = (ImageView) row.findViewById(R.id.leftIv8);
-		// holder.leftPage
-		// .setOnLongClickListener(ReviewerActivity.this);
-		// holder.rightPage
-		// .setOnLongClickListener(ReviewerActivity.this);
-		// row.setTag(holder);
-		// } else {
-		// holder = (PageHolder) row.getTag();
-		//
-		// }
-		// for (int i = 0; i < lPageBeans.get(position).size(); i++) {
-		// LayoutParams params = new FrameLayout.LayoutParams(
-		// FrameLayout.LayoutParams.WRAP_CONTENT,
-		// FrameLayout.LayoutParams.WRAP_CONTENT);
-		// switch (i) {
-		//
-		// case 0:
-		// holder.liv1.setVisibility(View.VISIBLE);
-		// holder.liv1.setTag(holder.liv1.getId(), position);
-		// holder.liv1.setTag(holder.liv1.getParent().hashCode(),
-		// i);
-		// holder.liv1.setTag(position + "" + i);
-		//
-		// params.setMargins(
-		// lPageBeans.get(position).get(i).leftMargin,
-		// lPageBeans.get(position).get(i).topMargin, 0, 0);
-		// holder.leftPage.removeView(holder.liv1);
-		// holder.leftPage.addView(holder.liv1, params);
-		// imageLoader
-		// .displayImage(
-		// "http://alicia.mobile9.com/download/thumb/453/120/ironman3_JRzCNY2O.jpg",
-		// holder.liv1);
-		// break;
-		// case 1:
-		// holder.liv2.setVisibility(View.VISIBLE);
-		// holder.liv2.setTag(holder.liv2.getId(), position);
-		// holder.liv2.setTag(holder.liv2.getParent().hashCode(),
-		// i);
-		//
-		// params.setMargins(
-		// lPageBeans.get(position).get(i).leftMargin,
-		// lPageBeans.get(position).get(i).topMargin, 0, 0);
-		// holder.leftPage.removeView(holder.liv2);
-		//
-		// holder.leftPage.addView(holder.liv2, params);
-		// imageLoader
-		// .displayImage(
-		// "http://wallpaper.pickywallpapers.com/samsung-reality/thumbnail/iron-man-standing.jpg",
-		// holder.liv2);
-		// break;
-		// default:
-		// break;
-		// }
-		//
-		// }
-		//
-		// return row;
-		// }
-		// });
 
 		homeSaveButton.setOnClickListener(this);
 		aboutButton.setOnClickListener(this);
@@ -273,8 +176,9 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.EditTitleButton:
-			startActivity(new Intent(ReviewerActivity.this,
-					EditAlbumTitle.class));
+			startActivityForResult(new Intent(ReviewerActivity.this,
+					EditAlbumTitle.class), Intent_Edit_Album_Title);
+
 			break;
 
 		case R.id.ShareButton:
@@ -303,8 +207,12 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 			break;
 
 		case R.id.SortAlbumButton:
-			startActivity(new Intent(ReviewerActivity.this,
-					ActivityAlbumSort.class));
+			Intent sortIntent = new Intent(ReviewerActivity.this,
+					ActivityAlbumSort.class);
+
+			sortIntent.putExtra("designBean", designBean);
+			startActivity(sortIntent);
+
 			break;
 
 		case R.id.DesignerButton:
@@ -385,13 +293,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 				.setTextColor(Color.BLACK);
 		commentsDialog.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-	}
-
-	static class PageHolder {
-
-		FrameLayout leftPage, rightPage;
-		ImageView liv1, liv2, liv3, liv4, liv5, liv6, liv7, liv8, riv1, riv2,
-				riv3, riv4, riv5, riv6, riv7, riv8;
 	}
 
 	@Override
@@ -479,7 +380,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onSuccess(Object object) {
-			ReviewerDesignBean designBean = new parseReviewerDesignXml()
+			designBean = new parseReviewerDesignXml()
 					.parseReviewerDesignXml(object.toString());
 			ReviewerAlbumAdapter adapter = new ReviewerAlbumAdapter(
 					ReviewerActivity.this, designBean,
@@ -489,6 +390,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 							/ designBean.getWidth());
 
 			flipView.setAdapter(adapter);
+			albumTitleTextView.setText(designBean.bookTitle);
 
 		}
 
@@ -500,6 +402,26 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 	private void checkerror(Exception exception) {
 		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		switch (requestCode) {
+		case Intent_Edit_Album_Title: {
+
+			if (resultCode == RESULT_OK) {
+				albumTitleTextView.setText(data.getStringExtra("Title"));
+			}
+
+		}
+
+			break;
+
+		default:
+			break;
+		}
 
 	}
 }

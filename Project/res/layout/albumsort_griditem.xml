@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.riktamtech.picapoco.albumsortutils.ImageCell xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/imageCell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/leftImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/rightImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scaleType="fitXY" />
+
+</com.riktamtech.picapoco.albumsortutils.ImageCell>

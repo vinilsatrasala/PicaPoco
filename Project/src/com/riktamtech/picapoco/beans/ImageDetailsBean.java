@@ -1,6 +1,8 @@
 package com.riktamtech.picapoco.beans;
 
-public class ImageDetailsBean {
+import java.io.Serializable;
+
+public class ImageDetailsBean implements Serializable{
 
 	public int IMAGE_ID, SPOOL_ID, IMAGE_QUANTITY;
 	public long THUMBNAIL_ORIGIN_ID;

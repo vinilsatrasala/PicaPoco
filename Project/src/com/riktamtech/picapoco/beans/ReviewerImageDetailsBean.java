@@ -1,6 +1,8 @@
 package com.riktamtech.picapoco.beans;
 
-public class ReviewerImageDetailsBean {
+import java.io.Serializable;
+
+public class ReviewerImageDetailsBean implements Serializable{
 
 	public String designPageImageLayerId = "", designPageImageLayerApiId = "";
 	public int type = 0, zIndex = 0, width = 0, height = 0, positionTop = 0,

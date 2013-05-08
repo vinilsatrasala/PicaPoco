@@ -1,8 +1,9 @@
 package com.riktamtech.picapoco.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AlbumDetailsBean {
+public class AlbumDetailsBean implements Serializable {
 
 	public int AlbumId;
 	public int albumType = 0, albumFormat = 0, designerType = 0, numberOfPages;

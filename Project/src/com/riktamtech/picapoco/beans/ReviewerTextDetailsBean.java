@@ -1,6 +1,8 @@
 package com.riktamtech.picapoco.beans;
 
-public class ReviewerTextDetailsBean {
+import java.io.Serializable;
+
+public class ReviewerTextDetailsBean implements Serializable {
 
 	public String designPageTextLayerId = "", text = "", fontColor = "";
 	public int type = 0, zIndex = 0, fontFamily = 0, fontSize = 0,

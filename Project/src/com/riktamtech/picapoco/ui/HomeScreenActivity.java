@@ -17,8 +17,7 @@ public class HomeScreenActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
-		new ServiceRequestHelper().login("venu@riktamtech.com", "12345",
-				communityLoginListener);
+
 		TextView uploaderModuleTextView = (TextView) findViewById(R.id.makeFreeDesignTestView);
 		TextView communityModuleTextView = (TextView) findViewById(R.id.viewOrPrintAlbum);
 		TextView moreIntoTextView = (TextView) findViewById(R.id.moreInfoTextView);
@@ -51,18 +50,4 @@ public class HomeScreenActivity extends Activity implements OnClickListener {
 
 	}
 
-	ServiceStatusListener communityLoginListener = new ServiceStatusListener() {
-
-		@Override
-		public void onSuccess(Object object) {
-			// TODO Auto-generated method stub
-			object.toString();
-		}
-
-		@Override
-		public void onFailure(Exception exception) {
-			// TODO Auto-generated method stub
-
-		}
-	};
 }
