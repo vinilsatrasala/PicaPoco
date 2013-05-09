@@ -59,8 +59,7 @@ public class ActivityAlbumSort extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.AcceptButton:
-			startActivity(new Intent(ActivityAlbumSort.this,
-					ReviewerActivity.class));
+			finish();
 			break;
 		case R.id.CloseButton:
 			finish();

@@ -31,8 +31,7 @@ import com.riktamtech.picapoco.ui.ReviewerActivity;
 public class ReviewerAlbumAdapter extends BaseAdapter {
 	private Context context;
 	private ReviewerDesignBean DesignBean;
-	private ImageLoader imageLoader;
-	private ImageLoaderConfiguration config;
+
 	private Double heightScaleRatio, widthScaleRatio;
 
 	public ReviewerAlbumAdapter(Context context, ReviewerDesignBean DesignBean,
@@ -41,12 +40,7 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 		this.DesignBean = DesignBean;
 		this.heightScaleRatio = heightScaleRatio;
 		this.widthScaleRatio = widthScaleratio;
-		config = new ImageLoaderConfiguration.Builder(context)
-				.memoryCache(new UsingFreqLimitedMemoryCache(5000000))
-				.defaultDisplayImageOptions(DisplayImageOptions.createSimple())
-				.build();
-		imageLoader = ImageLoader.getInstance();
-		imageLoader.init(config);
+
 	}
 
 	@Override
@@ -88,10 +82,12 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 		return row;
 	}
 
+	
 	protected View PreparePage(int position, ViewGroup parent) {
-
 		int leftPageIndex = position * 2;
 		int rightPageIndex = (position * 2) + 1;
+
+		
 		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 		View PageView = inflater.inflate(R.layout.pagelayout, null);
 		ReviewerPageBeanDetails leftPageBean = DesignBean.reviewerPageBeanDetailsArrayList
@@ -122,7 +118,9 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 							(int) (widthScaleRatio * leftPageBean.designLayoutGroupsArrayList
 									.get(i).reviewerImageDetailsArrayList
 									.get(j).width),
-							FrameLayout.LayoutParams.WRAP_CONTENT);
+							(int) (heightScaleRatio * leftPageBean.designLayoutGroupsArrayList
+									.get(i).reviewerImageDetailsArrayList
+									.get(j).height));
 				}
 
 				params.setMargins(
@@ -135,14 +133,24 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 				imageView
 						.setTag(leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList
 								.get(j).designPageImageLayerApiId);
-				leftPage.addView(imageView, params);
+				imageView.setLayoutParams(params);
+				imageView
+						.setPivotX((float) (widthScaleRatio * leftPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).photoCenterX));
+				imageView
+						.setPivotY((float) (heightScaleRatio * leftPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).photoCenterY));
+				imageView
+						.setRotation(leftPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).photoRotationAngle);
+				leftPage.addView(imageView);
 
-				imageLoader.displayImage(
-						ServiceRequestHelper.picapocoReviewerImageBaseUrl
-								+ leftPageBean.designLayoutGroupsArrayList
-										.get(i).reviewerImageDetailsArrayList
-										.get(j).designPageImageLayerApiId
-								+ ".jpg", imageView);
+				ImageLoader
+						.getInstance()
+						.displayImage(
+								ServiceRequestHelper.picapocoReviewerImageBaseUrl
+										+ leftPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList.get(j).designPageImageLayerApiId
+										+ ".jpg", imageView);
 
 			}
 		}
@@ -161,7 +169,9 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 							(int) (widthScaleRatio * rightPageBean.designLayoutGroupsArrayList
 									.get(i).reviewerImageDetailsArrayList
 									.get(j).width),
-							FrameLayout.LayoutParams.WRAP_CONTENT);
+							(int) (heightScaleRatio * rightPageBean.designLayoutGroupsArrayList
+									.get(i).reviewerImageDetailsArrayList
+									.get(j).height));
 				}
 
 				params.setMargins(
@@ -175,13 +185,21 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 						.setTag(rightPageBean.designLayoutGroupsArrayList
 								.get(i).reviewerImageDetailsArrayList.get(j).designPageImageLayerApiId);
 				rightPage.addView(imageView, params);
-
-				imageLoader.displayImage(
-						ServiceRequestHelper.picapocoReviewerImageBaseUrl
-								+ rightPageBean.designLayoutGroupsArrayList
-										.get(i).reviewerImageDetailsArrayList
-										.get(j).designPageImageLayerApiId
-								+ ".jpg", imageView);
+				imageView
+						.setPivotX((float) (widthScaleRatio * rightPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).photoCenterX));
+				imageView
+						.setPivotY((float) (heightScaleRatio * rightPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).photoCenterY));
+				imageView
+						.setRotation(rightPageBean.designLayoutGroupsArrayList
+								.get(i).reviewerImageDetailsArrayList.get(j).photoRotationAngle);
+				ImageLoader
+						.getInstance()
+						.displayImage(
+								ServiceRequestHelper.picapocoReviewerImageBaseUrl
+										+ rightPageBean.designLayoutGroupsArrayList.get(i).reviewerImageDetailsArrayList.get(j).designPageImageLayerApiId
+										+ ".jpg", imageView);
 
 			}
 		}

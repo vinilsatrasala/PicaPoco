@@ -25,7 +25,7 @@ public class HomeGridAdapter extends BaseAdapter implements OnClickListener {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 9;
+		return 3;
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class HomeGridAdapter extends BaseAdapter implements OnClickListener {
 		} else {
 			holder = (ImageHolder) row.getTag();
 		}
-
+		holder.albumLayout.setTag(position);
 		if ((position + 1) % 3 == 0) {
 			holder.image.setImageDrawable(context.getResources().getDrawable(
 					R.drawable.start_album_cover));
@@ -92,8 +92,12 @@ public class HomeGridAdapter extends BaseAdapter implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.albumLayout:
-			
-			context.startActivity(new Intent(context, ReviewerActivity.class));
+			if (Integer.parseInt(v.getTag().toString()) == 1)
+				context.startActivity(new Intent(context,
+						ReviewerActivity.class).putExtra("mode", "view"));
+			else
+				context.startActivity(new Intent(context,
+						ReviewerActivity.class).putExtra("mode", "edit"));
 			break;
 		case R.id.add_shareButton:
 			break;

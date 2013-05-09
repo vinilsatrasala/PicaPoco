@@ -76,6 +76,11 @@ public class ServiceRequestHelper {
 			+ "/ajax/review/fetchDesign";
 	private static String updateBookTitleUrl = picapocoreviewerBaseUrl
 			+ "/ajax/review/updateBookTitle?";
+
+	// Community URLs
+	private static String commentsUrl = baseUrlLogin + "/api/designpages/";
+	private static String likesUrl = baseUrlLogin + "/api/designpages/";
+
 	private static Header[] headers;
 
 	/**
@@ -393,6 +398,14 @@ public class ServiceRequestHelper {
 		new ServiceRequestGetTask(listener).execute(getRequest);
 	}
 
+	/**
+	 * This method updates title of the album
+	 * 
+	 * @param bookTitle
+	 * @param designId
+	 * @param listener
+	 * @throws UnsupportedEncodingException
+	 */
 	public void updateBookTitle(String bookTitle, String designId,
 			ServiceStatusListener listener) throws UnsupportedEncodingException {
 
@@ -403,6 +416,40 @@ public class ServiceRequestHelper {
 				+ URLEncodedUtils.format(nameValuePairs, "utf-8"));
 		setDefaulHeadersForGet(getRequest);
 		new ServiceRequestGetTask(listener).execute(getRequest);
+	}
+
+	/**
+	 * This method will get all comments of specified page.
+	 * 
+	 * @param designPageId
+	 * @param listener
+	 * @throws UnsupportedEncodingException
+	 */
+	public void getComments(String designPageId, String start, String end,
+			ServiceStatusListener listener) throws UnsupportedEncodingException {
+		HttpGet getRequest = new HttpGet(commentsUrl + designPageId
+				+ "/comments.json?offset=" + start + "limit=" + end);
+		setDefaulHeadersForGet(getRequest);
+		new ServiceRequestGetTask(listener).execute(getRequest);
+	}
+
+	/**
+	 * This method will Post comments of specified page.
+	 * 
+	 * @param designPageId
+	 * @param listener
+	 * @throws UnsupportedEncodingException
+	 */
+	public void postComments(String designPageId, String comment,
+			ServiceStatusListener listener) throws UnsupportedEncodingException {
+
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("comment", comment));
+		HttpPost post = new HttpPost(commentsUrl + designPageId
+				+ "/comments.json");
+		post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		setDefalutHeaders(post);
+		new ServiceRequestTask(listener).execute(post);
 	}
 
 	class ServiceRequestTask extends AsyncTask<HttpPost, Object, Object> {

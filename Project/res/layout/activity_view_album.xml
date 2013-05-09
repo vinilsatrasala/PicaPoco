@@ -367,6 +367,8 @@
         android:layout_below="@+id/headerWrapper"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/album_bg"
         android:paddingBottom="12dp"

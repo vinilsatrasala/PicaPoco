@@ -2,6 +2,7 @@ package com.riktamtech.picapoco.albumsortutils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap.Config;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,15 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.cache.disc.DiscCacheAware;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.riktamtech.picapoco.R;
+import com.riktamtech.picapoco.application.MyApplication;
 import com.riktamtech.picapoco.beans.ReviewerDesignBean;
 
 /**
@@ -34,21 +39,15 @@ public class ImageCellAdapter extends BaseAdapter {
 	private Context mContext;
 	private ReviewerDesignBean designBean;
 	private int pageCount;
-	private ImageLoader imageLoader;
+
 	private ImageLoaderConfiguration config;
 
 	public ImageCellAdapter(Context c, ReviewerDesignBean designBean) {
 		mContext = c;
 		this.designBean = designBean;
 		pageCount = (designBean.reviewerPageBeanDetailsArrayList.size() + 2) / 2;
-		DisplayImageOptions imageOptions = new DisplayImageOptions.Builder()
-				.cacheInMemory().cacheOnDisc().build();
-		config = new ImageLoaderConfiguration.Builder(c)
-				.memoryCache(new UsingFreqLimitedMemoryCache(5000000))
-				.defaultDisplayImageOptions(DisplayImageOptions.createSimple())
-				.build();
-		imageLoader = ImageLoader.getInstance();
-		imageLoader.init(config);
+
+	
 
 	}
 
@@ -105,46 +104,53 @@ public class ImageCellAdapter extends BaseAdapter {
 		if (position == 1 || position == pageCount - 1) {
 			holder.imagecell.mEmpty = false;
 			if (position == 1)
-				imageLoader.displayImage(
-						"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
+				ImageLoader
+						.getInstance()
+						.displayImage(
+								"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
 
-								+ designBean.reviewerPageBeanDetailsArrayList
-										.get(2 * position).designPageApiId
-								+ "/" + "thumbnail.jpg", holder.rightImage);
+										+ designBean.reviewerPageBeanDetailsArrayList.get(2 * position).designPageApiId
+										+ "/" + "thumbnail.jpg",
+								holder.rightImage);
 			else
-				imageLoader.displayImage(
-						"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
+				ImageLoader
+						.getInstance()
+						.displayImage(
+								"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
 
-								+ designBean.reviewerPageBeanDetailsArrayList
-										.get(2 * position - 1).designPageApiId
-								+ "/" + "thumbnail.jpg", holder.leftImage);
+										+ designBean.reviewerPageBeanDetailsArrayList.get(2 * position - 1).designPageApiId
+										+ "/" + "thumbnail.jpg", holder.leftImage);
 		} else if (position == 0) {
-			imageLoader.displayImage(
-					"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
+			ImageLoader
+					.getInstance()
+					.displayImage(
+							"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
 
-							+ designBean.reviewerPageBeanDetailsArrayList
-									.get(2 * position).designPageApiId + "/"
-							+ "thumbnail.jpg", holder.leftImage);
-			imageLoader.displayImage(
-					"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
+									+ designBean.reviewerPageBeanDetailsArrayList.get(2 * position).designPageApiId
+									+ "/" + "thumbnail.jpg", holder.leftImage);
+			ImageLoader
+					.getInstance()
+					.displayImage(
+							"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
 
-							+ designBean.reviewerPageBeanDetailsArrayList
-									.get(2 * position + 1).designPageApiId
-							+ "/" + "thumbnail.jpg", holder.rightImage);
+									+ designBean.reviewerPageBeanDetailsArrayList.get(2 * position + 1).designPageApiId
+									+ "/" + "thumbnail.jpg", holder.rightImage);
 		} else {
-			imageLoader.displayImage(
-					"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
+			ImageLoader
+					.getInstance()
+					.displayImage(
+							"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
 
-							+ designBean.reviewerPageBeanDetailsArrayList
-									.get(2 * position - 1).designPageApiId
-							+ "/" + "thumbnail.jpg", holder.leftImage);
+									+ designBean.reviewerPageBeanDetailsArrayList.get(2 * position - 1).designPageApiId
+									+ "/" + "thumbnail.jpg", holder.leftImage);
 
-			imageLoader.displayImage(
-					"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
+			ImageLoader
+					.getInstance()
+					.displayImage(
+							"http://ppinterface.staging.pictureplix.net/app_staging.php/designPage/read/"
 
-							+ designBean.reviewerPageBeanDetailsArrayList
-									.get(2 * position).designPageApiId + "/"
-							+ "thumbnail.jpg", holder.rightImage);
+									+ designBean.reviewerPageBeanDetailsArrayList.get(2 * position).designPageApiId
+									+ "/" + "thumbnail.jpg", holder.rightImage);
 		}
 		// v.setBackgroundResource (R.color.drop_target_enabled);
 

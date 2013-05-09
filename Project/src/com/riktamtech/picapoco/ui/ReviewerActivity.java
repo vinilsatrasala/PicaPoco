@@ -1,5 +1,6 @@
 package com.riktamtech.picapoco.ui;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -7,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -88,22 +90,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		new ServiceRequestHelper().reviewerLogin(externalId,
 				reviewerLoginListener);
 
-		for (int i = 0; i < 4; i++) {
-			ArrayList<ImageBean> imagebeans = new ArrayList<ImageBean>();
-			for (int j = 0; j < 2; j++) {
-				ImageBean imageBean = new ImageBean();
-				if (j == 0) {
-					imageBean.leftMargin = 50;
-					imageBean.topMargin = 30;
-				} else {
-					imageBean.leftMargin = 150;
-					imageBean.topMargin = 100;
-				}
-				imagebeans.add(imageBean);
-
-			}
-			lPageBeans.add(imagebeans);
-		}
 		albumTitleTextView = (TextView) findViewById(R.id.headerTextView);
 		homeSaveButton = (ImageView) findViewById(R.id.HomeSaveButton);
 		aboutButton = (ImageView) findViewById(R.id.AboutButton);
@@ -143,13 +129,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 				.findViewById(R.id.editTextButton);
 		designerTextEditButton = (ImageView) editTextModeLayout
 				.findViewById(R.id.DesignerTextButton);
-		config = new ImageLoaderConfiguration.Builder(ReviewerActivity.this)
-				.memoryCache(new UsingFreqLimitedMemoryCache(5000000))
-				.defaultDisplayImageOptions(DisplayImageOptions.createSimple())
-				.build();
-		imageLoader = ImageLoader.getInstance();
-		imageLoader.init(config);
-
 		flipView = (FlipViewController) findViewById(R.id.flipView);
 
 		flipView.setOverFlipEnabled(false);
@@ -251,6 +230,13 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 			break;
 		case R.id.chatRightButton:
+			try {
+				new ServiceRequestHelper().getComments(designBean.designId,
+						"0", "30", getCommentsListener);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			showCommentsDialog();
 
 			break;
@@ -261,6 +247,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 	}
 
 	private void showCommentsDialog() {
+
 		commentsDialog = new Dialog(ReviewerActivity.this,
 				android.R.style.Theme_Black_NoTitleBar_Fullscreen);
 		commentsDialog.setContentView(R.layout.activity_reviewer_comments);
@@ -375,7 +362,20 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		}
 
 	};
+	ServiceStatusListener getCommentsListener = new ServiceStatusListener() {
 
+		@Override
+		public void onSuccess(Object object) {
+			// TODO Auto-generated method stub
+			Log.d("alpha", object.toString());
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+			// TODO Auto-generated method stub
+
+		}
+	};
 	ServiceStatusListener fetchDesignerListener = new ServiceStatusListener() {
 
 		@Override
@@ -390,6 +390,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 							/ designBean.getWidth());
 
 			flipView.setAdapter(adapter);
+
 			albumTitleTextView.setText(designBean.bookTitle);
 
 		}

@@ -2,7 +2,9 @@ package com.riktamtech.picapoco.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pManager.ServiceResponseListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -12,6 +14,8 @@ import android.widget.RelativeLayout;
 import com.origamilabs.library.views.StaggeredGridView;
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.adapters.HomeGridAdapter;
+import com.riktamtech.picapoco.application.MyApplication.ServiceStatusListener;
+import com.riktamtech.picapoco.services.ServiceRequestHelper;
 
 public class StartActivity extends Activity implements OnClickListener {
 	private LinearLayout leftMenu;
@@ -32,6 +36,8 @@ public class StartActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		new ServiceRequestHelper().login("venu@riktamtech.com", "12345",
+				loginListener);
 		menuButton = (ImageView) findViewById(R.id.MenuButton);
 		homeButton = (ImageView) findViewById(R.id.HomeButton);
 		leftMenu = (LinearLayout) findViewById(R.id.menu_Left);
@@ -109,4 +115,19 @@ public class StartActivity extends Activity implements OnClickListener {
 			break;
 		}
 	}
+
+	ServiceStatusListener loginListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			// TODO Auto-generated method stub
+			Log.d("alpha", object.toString());
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+			// TODO Auto-generated method stub
+
+		}
+	};
 }
