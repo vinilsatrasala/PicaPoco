@@ -76,6 +76,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 	protected View page;
 	protected ArrayList<View> views = new ArrayList<View>();
 	private TextView albumTitleTextView;
+	private String albumMode;
 
 	public static String externalId = "PO2013050806A5A85333";
 
@@ -84,6 +85,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		albumMode = getIntent().getStringExtra("mode");
 		setContentView(R.layout.activity_view_album);
 
 		// TODO remove login by changing actual required one
@@ -387,7 +389,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 					flipView.getMeasuredHeight()
 							/ (double) designBean.getHeight(),
 					(flipView.getMeasuredWidth() / (double) 2)
-							/ designBean.getWidth());
+							/ designBean.getWidth(), albumMode);
 
 			flipView.setAdapter(adapter);
 

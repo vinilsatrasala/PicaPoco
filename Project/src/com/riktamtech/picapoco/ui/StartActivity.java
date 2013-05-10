@@ -2,7 +2,6 @@ package com.riktamtech.picapoco.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.wifi.p2p.WifiP2pManager.ServiceResponseListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
