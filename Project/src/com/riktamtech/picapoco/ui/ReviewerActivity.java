@@ -3,6 +3,10 @@ package com.riktamtech.picapoco.ui;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import org.apache.james.mime4j.io.PositionInputStream;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,6 +19,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,21 +29,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aphidmobile.flip.FlipViewController;
-import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.aphidmobile.flip.FlipViewController.ViewFlipListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.riktamtech.picapoco.R;
 import com.riktamtech.picapoco.adapters.CommentsAdapter;
 import com.riktamtech.picapoco.adapters.ReviewerAlbumAdapter;
 import com.riktamtech.picapoco.application.MyApplication.ServiceStatusListener;
+import com.riktamtech.picapoco.beans.CommentsBean;
 import com.riktamtech.picapoco.beans.ImageBean;
 import com.riktamtech.picapoco.beans.ReviewerDesignBean;
+import com.riktamtech.picapoco.beans.ReviewerPageBeanDetails;
 import com.riktamtech.picapoco.services.ServiceRequestHelper;
 import com.riktamtech.picapoco.ui.utils.parseReviewerDesignXml;
 
 public class ReviewerActivity extends Activity implements OnClickListener,
-		OnTouchListener, OnLongClickListener {
+		OnTouchListener, OnLongClickListener, ViewFlipListener {
 
 	private static final int Intent_Edit_Album_Title = 100;
 	private ImageView homeSaveButton;
@@ -71,14 +78,24 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 	ArrayList<ArrayList<ImageBean>> lPageBeans = new ArrayList<ArrayList<ImageBean>>();
 	private int _xDelta;
 	private int _yDelta;
-	private ImageLoaderConfiguration config;
-	private ImageLoader imageLoader;
+
 	protected View page;
 	protected ArrayList<View> views = new ArrayList<View>();
 	private TextView albumTitleTextView;
 	private String albumMode;
+	public ArrayList<CommentsBean> rightcommentsBeansArrayList,
+			leftcommentsBeansArrayList;
+	public TextView chatCountLeft, chatCountRight;
+	private EditText leftCommentsEditText;
+	private EditText rightCommentsEditText;
+	private ImageView leftCommentsTick;
+	private ImageView rightCommentsTick;
+	private TextView likeCountLeft;
+	private TextView likeCountRight;
+	private ImageView likeLeftButton;
+	private ImageView likeRightButton;
 
-	public static String externalId = "PO2013050806A5A85333";
+	public static String externalId = "PO2013051553FAF1AEC5";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +116,19 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		shareButton = (ImageView) findViewById(R.id.ShareButton);
 		commentsButton = (ImageView) findViewById(R.id.CommentsButton);
 		commentLeftTop = (ImageView) findViewById(R.id.chatLeftButton);
+		chatCountLeft = (TextView) findViewById(R.id.chatCountLeft);
 		commentRightTop = (ImageView) findViewById(R.id.chatRightButton);
+		chatCountRight = (TextView) findViewById(R.id.chatCountRight);
+		likeCountLeft = (TextView) findViewById(R.id.likeCountLeft);
+		likeCountRight = (TextView) findViewById(R.id.likeCountRight);
+		likeLeftButton = (ImageView) findViewById(R.id.likeLeftButton);
+		likeRightButton = (ImageView) findViewById(R.id.likeRightButton);
+
 		commentLeftTop.setOnClickListener(this);
 		commentRightTop.setOnClickListener(this);
+		likeLeftButton.setOnClickListener(this);
+		likeRightButton.setOnClickListener(this);
+
 		reviewerModeFrame = (FrameLayout) findViewById(R.id.reviwerModeFrame);
 		viewModeLayout = (RelativeLayout) reviewerModeFrame
 				.findViewById(R.id.viewMode);
@@ -134,6 +161,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		flipView = (FlipViewController) findViewById(R.id.flipView);
 
 		flipView.setOverFlipEnabled(false);
+		flipView.setOnViewFlipListener(this);
 
 		homeSaveButton.setOnClickListener(this);
 		aboutButton.setOnClickListener(this);
@@ -164,6 +192,7 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 		case R.id.ShareButton:
 			startActivity(new Intent(ReviewerActivity.this, ShareActivity.class));
+
 			break;
 
 		case R.id.HomeSaveButton:
@@ -232,17 +261,70 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 			break;
 		case R.id.chatRightButton:
-			try {
-				new ServiceRequestHelper().getComments(designBean.designId,
-						"0", "30", getCommentsListener);
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			showCommentsDialog();
 
 			break;
+		case R.id.leftTick:
+			if (!leftCommentsEditText.getText().toString().trim().equals("")) {
+				getCurrentPageIndexes(flipView.getSelectedItemPosition());
+				if (leftPageIndex != -1)
+					try {
+						new ServiceRequestHelper().postComments(
+								designBean.reviewerPageBeanDetailsArrayList
+										.get(leftPageIndex).designPageId + "",
+								leftCommentsEditText.getText().toString()
+										.trim(), leftPostCommentsListener);
+						leftCommentsEditText.setText("");
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+			}
+			break;
+		case R.id.rightTick:
+			if (!rightCommentsEditText.getText().toString().trim().equals("")) {
+				getCurrentPageIndexes(flipView.getSelectedItemPosition());
+				if (rightPageIndex != -1)
+					try {
+						new ServiceRequestHelper().postComments(
+								designBean.reviewerPageBeanDetailsArrayList
+										.get(rightPageIndex).designPageId + "",
+								rightCommentsEditText.getText().toString()
+										.trim(), rightPostCommentsListener);
+						rightCommentsEditText.setText("");
+					} catch (UnsupportedEncodingException e) {
 
+						e.printStackTrace();
+					}
+			}
+			break;
+		case R.id.likeLeftButton:
+			if (leftPageIndex != -1)
+				try {
+					new ServiceRequestHelper().postLike(
+							designBean.reviewerPageBeanDetailsArrayList
+									.get(leftPageIndex).designPageId + "",
+							leftPostLikesListener);
+
+				} catch (UnsupportedEncodingException e) {
+
+					e.printStackTrace();
+				}
+			break;
+
+		case R.id.likeRightButton:
+			if (rightPageIndex != -1)
+				try {
+					new ServiceRequestHelper().postLike(
+							designBean.reviewerPageBeanDetailsArrayList
+									.get(rightPageIndex).designPageId + "",
+							rightPostLikesListener);
+
+				} catch (UnsupportedEncodingException e) {
+
+					e.printStackTrace();
+				}
+			break;
 		default:
 			break;
 		}
@@ -273,15 +355,35 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 				.findViewById(R.id.commentsLeftListView);
 		rightListView = (ListView) commentsDialog
 				.findViewById(R.id.commentsRightListView);
+		leftCommentsEditText = (EditText) commentsDialog
+				.findViewById(R.id.addCommentEditTextLeft);
+		rightCommentsEditText = (EditText) commentsDialog
+				.findViewById(R.id.addCommentEditTextRight);
+		leftCommentsTick = (ImageView) commentsDialog
+				.findViewById(R.id.leftTick);
+		rightCommentsTick = (ImageView) commentsDialog
+				.findViewById(R.id.rightTick);
+		leftCommentsTick.setOnClickListener(this);
+		rightCommentsTick.setOnClickListener(this);
+
+		// getComments();
+
 		leftListView.setAdapter(new CommentsAdapter(ReviewerActivity.this,
-				R.layout.comment_listitem));
+				R.layout.comment_listitem, leftcommentsBeansArrayList));
 		rightListView.setAdapter(new CommentsAdapter(ReviewerActivity.this,
-				R.layout.comment_listitem));
+				R.layout.comment_listitem, rightcommentsBeansArrayList));
 		commentsDialog.show();
 		((TextView) commentsDialog.findViewById(R.id.headerTextView))
 				.setTextColor(Color.BLACK);
 		commentsDialog.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		((TextView) commentsDialog.findViewById(R.id.chatCountLeft))
+				.setText(chatCountLeft.getText());
+		((TextView) commentsDialog.findViewById(R.id.chatCountRight))
+				.setText(chatCountRight.getText());
+		((TextView) commentsDialog.findViewById(R.id.headerTextView))
+				.setText(albumTitleTextView.getText().toString().trim());
+
 	}
 
 	@Override
@@ -353,7 +455,6 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 
 		@Override
 		public void onSuccess(Object object) {
-			// TODO handle resposne
 			new ServiceRequestHelper().fetchDesigns(fetchDesignerListener);
 
 		}
@@ -364,17 +465,30 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		}
 
 	};
-	ServiceStatusListener getCommentsListener = new ServiceStatusListener() {
+
+	ServiceStatusListener leftPostCommentsListener = new ServiceStatusListener() {
 
 		@Override
 		public void onSuccess(Object object) {
-			// TODO Auto-generated method stub
-			Log.d("alpha", object.toString());
+			getComments(leftPageIndex, getleftCommentsListener);
+
 		}
 
 		@Override
 		public void onFailure(Exception exception) {
-			// TODO Auto-generated method stub
+
+		}
+	};
+	ServiceStatusListener rightPostCommentsListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			getComments(rightPageIndex, getrightCommentsListener);
+
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
 
 		}
 	};
@@ -402,15 +516,15 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 			checkerror(exception);
 		}
 	};
+	private int leftPageIndex;
+	private int rightPageIndex;
 
 	private void checkerror(Exception exception) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		switch (requestCode) {
 		case Intent_Edit_Album_Title: {
 
@@ -427,4 +541,233 @@ public class ReviewerActivity extends Activity implements OnClickListener,
 		}
 
 	}
+
+	private void getCurrentPageIndexes(int position) {
+		if (position == 0) {
+			leftPageIndex = -1;
+			rightPageIndex = 1;
+		} else if (position == flipView.getCount() - 1) {
+			rightPageIndex = -1;
+			leftPageIndex = 0;
+		} else if (position == 1) {
+			rightPageIndex = 2;
+			leftPageIndex = -1;
+		} else if (position == flipView.getCount() - 2) {
+			rightPageIndex = -1;
+			leftPageIndex = designBean.reviewerPageBeanDetailsArrayList.size() - 1;
+		} else {
+			leftPageIndex = 2 * position - 1;
+			rightPageIndex = 2 * position;
+		}
+	}
+
+	@Override
+	public void onViewFlipped(View view, int position) {
+		getCurrentPageIndexes(position);
+		if (leftPageIndex == -1) {
+			chatCountLeft.setText("0");
+			likeCountLeft.setText("0");
+
+		}
+		if (rightPageIndex == -1) {
+			chatCountRight.setText("0");
+			likeCountRight.setText("0");
+		}
+		getComments(leftPageIndex, getleftCommentsListener);
+		getComments(rightPageIndex, getrightCommentsListener);
+		getLikes(leftPageIndex, getLeftLikesListener);
+		getLikes(rightPageIndex, getRightLikesListener);
+	}
+
+	public void getComments(int PageIndex, ServiceStatusListener listener) {
+		// Getting page beans
+		if (PageIndex != -1) {
+			try {
+				new ServiceRequestHelper().getComments(
+						""
+								+ designBean.reviewerPageBeanDetailsArrayList
+										.get(PageIndex).designPageId, "0",
+						"30", listener);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void getLikes(int PageIndex, ServiceStatusListener listener) {
+		// Getting page beans
+		if (PageIndex != -1) {
+			try {
+				new ServiceRequestHelper().getLikes(
+						""
+								+ designBean.reviewerPageBeanDetailsArrayList
+										.get(PageIndex).designPageId, "", "",
+						listener);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	ServiceStatusListener getleftCommentsListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			try {
+				leftcommentsBeansArrayList = new ArrayList<CommentsBean>();
+				JSONObject commentsObject = new JSONObject(object.toString());
+
+				chatCountLeft.setText(""
+						+ commentsObject.getInt("commentCount"));
+				for (int i = 0; i < commentsObject.getInt("commentCount"); i++) {
+					CommentsBean commentsBean = new CommentsBean();
+					commentsBean.user = commentsObject.getJSONArray("comments")
+							.getJSONObject(i).getJSONObject("user")
+							.getString("name");
+					commentsBean.Comment = commentsObject
+							.getJSONArray("comments").getJSONObject(i)
+							.getString("comment");
+					commentsBean.Date = commentsObject
+							.getJSONArray("comments")
+							.getJSONObject(i)
+							.getString("created_at")
+							.toString()
+							.substring(
+									0,
+									commentsObject.getJSONArray("comments")
+											.getJSONObject(i)
+											.getString("created_at").toString()
+											.indexOf("T"));
+					leftcommentsBeansArrayList.add(commentsBean);
+
+				}
+				if (commentsDialog.isShowing()) {
+					((BaseAdapter) leftListView.getAdapter())
+							.notifyDataSetChanged();
+					leftListView.setAdapter(new CommentsAdapter(
+							ReviewerActivity.this, R.layout.comment_listitem,
+							leftcommentsBeansArrayList));
+					((TextView) commentsDialog.findViewById(R.id.chatCountLeft))
+							.setText(chatCountLeft.getText());
+
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+
+		}
+	};
+	ServiceStatusListener getrightCommentsListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			try {
+				rightcommentsBeansArrayList = new ArrayList<CommentsBean>();
+				JSONObject commentsObject = new JSONObject(object.toString());
+				chatCountRight.setText(""
+						+ commentsObject.getInt("commentCount"));
+				for (int i = 0; i < commentsObject.getInt("commentCount"); i++) {
+					CommentsBean commentsBean = new CommentsBean();
+					commentsBean.user = commentsObject.getJSONArray("comments")
+							.getJSONObject(i).getJSONObject("user")
+							.getString("name");
+					commentsBean.Comment = commentsObject
+							.getJSONArray("comments").getJSONObject(i)
+							.getString("comment");
+					commentsBean.Date = commentsObject
+							.getJSONArray("comments")
+							.getJSONObject(i)
+							.getString("created_at")
+							.toString()
+							.substring(
+									0,
+									commentsObject.getJSONArray("comments")
+											.getJSONObject(i)
+											.getString("created_at").toString()
+											.indexOf("T"));
+					rightcommentsBeansArrayList.add(commentsBean);
+
+				}
+				if (commentsDialog.isShowing()) {
+					((BaseAdapter) rightListView.getAdapter())
+							.notifyDataSetChanged();
+					rightListView.setAdapter(new CommentsAdapter(
+							ReviewerActivity.this, R.layout.comment_listitem,
+							rightcommentsBeansArrayList));
+					((TextView) commentsDialog.findViewById(R.id.chatCountLeft))
+							.setText(chatCountLeft.getText());
+					((TextView) commentsDialog
+							.findViewById(R.id.chatCountRight))
+							.setText(chatCountRight.getText());
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			Log.d("alpha", object.toString());
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+
+		}
+	};
+
+	ServiceStatusListener getRightLikesListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+
+			object.toString();
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+
+		}
+	};
+	ServiceStatusListener getLeftLikesListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			// TODO Auto-generated method stub
+			object.toString();
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+
+		}
+	};
+
+	ServiceStatusListener leftPostLikesListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			object.toString();
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+
+		}
+	};
+
+	ServiceStatusListener rightPostLikesListener = new ServiceStatusListener() {
+
+		@Override
+		public void onSuccess(Object object) {
+			object.toString();
+		}
+
+		@Override
+		public void onFailure(Exception exception) {
+
+		}
+	};
 }

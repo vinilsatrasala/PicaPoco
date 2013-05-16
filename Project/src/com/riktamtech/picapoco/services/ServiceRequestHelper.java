@@ -45,7 +45,7 @@ public class ServiceRequestHelper {
 	private int responseCode = 0;
 	public static boolean shouldIKillTask = false;
 
-	private static String baseUrlLogin = "http://api.pppixpremium.staging.pictureplix.net";
+	private static String baseUrlLogin = "http://api.picapoco.staging.pictureplix.net";
 	public static String baseUrl = "http://pppixpremium.staging.pictureplix.net";
 
 	private static String loginUrl = baseUrlLogin + "/api/token/create.json";
@@ -428,7 +428,7 @@ public class ServiceRequestHelper {
 	public void getComments(String designPageId, String start, String end,
 			ServiceStatusListener listener) throws UnsupportedEncodingException {
 		HttpGet getRequest = new HttpGet(commentsUrl + designPageId
-				+ "/comments.json?offset=" + start + "limit=" + end);
+				+ "/comments.json");
 		setDefaulHeadersForGet(getRequest);
 		new ServiceRequestGetTask(listener).execute(getRequest);
 	}
@@ -447,6 +447,39 @@ public class ServiceRequestHelper {
 		nameValuePairs.add(new BasicNameValuePair("comment", comment));
 		HttpPost post = new HttpPost(commentsUrl + designPageId
 				+ "/comments.json");
+		post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		setDefalutHeaders(post);
+		new ServiceRequestTask(listener).execute(post);
+	}
+
+	/**
+	 * This method will get all likes of specified page.
+	 * 
+	 * @param designPageId
+	 * @param listener
+	 * @throws UnsupportedEncodingException
+	 */
+	public void getLikes(String designPageId, String start, String end,
+			ServiceStatusListener listener) throws UnsupportedEncodingException {
+		HttpGet getRequest = new HttpGet(commentsUrl + designPageId
+				+ "/likes.json");
+		setDefaulHeadersForGet(getRequest);
+		new ServiceRequestGetTask(listener).execute(getRequest);
+	}
+
+	/**
+	 * This method will Post like for specified page.
+	 * 
+	 * @param designPageId
+	 * @param listener
+	 * @throws UnsupportedEncodingException
+	 */
+	public void postLike(String designPageId, ServiceStatusListener listener)
+			throws UnsupportedEncodingException {
+
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+		HttpPost post = new HttpPost(commentsUrl + designPageId + "/likes.json");
 		post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		setDefalutHeaders(post);
 		new ServiceRequestTask(listener).execute(post);
@@ -539,6 +572,11 @@ public class ServiceRequestHelper {
 								} else if (jsonObject.has("id")) {
 
 									listenerReference.get().onSuccess(result);
+								} else if (jsonObject.has("message")
+										&& jsonObject
+												.getString("message")
+												.equals("Erfolgreich hochgeladen")) {
+									listenerReference.get().onSuccess(result);
 								} else {
 									throw new Exception(jsonObject.toString());
 								}
@@ -575,10 +613,11 @@ public class ServiceRequestHelper {
 
 				// Obtain and Set Headers when login
 				headers = httpResponse.getAllHeaders();
+				Log.d("alpha", headers + "");
 				for (int i = 0; i < headers.length; i++) {
 					if (headers[i].getName().equalsIgnoreCase("Set-Cookie")) {
 						sessionCookie = headers[i].getValue();
-						break;
+
 					}
 				}
 				responseCode = httpResponse.getStatusLine().getStatusCode();
@@ -633,6 +672,8 @@ public class ServiceRequestHelper {
 										listenerReference.get().onSuccess(
 												result);
 									}
+								} else if (jsonObject.has("comments")) {
+									listenerReference.get().onSuccess(result);
 								} else {
 									throw new Exception(jsonObject.toString());
 								}

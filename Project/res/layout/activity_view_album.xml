@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/likeLeftButton"
             android:paddingRight="5dp"
-            android:text="6"
+            android:text=""
             android:textColor="#AAAAAA"
             android:textSize="12sp" />
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/chatLeftButton"
-            android:text="1"
+            android:text=""
             android:textColor="@color/link_color"
             android:textSize="12sp" />
 
@@ -81,7 +81,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/chatRightButton"
             android:paddingRight="5dp"
-            android:text="6"
+            android:text=""
             android:textColor="#AAAAAA"
             android:textSize="12sp" />
 
@@ -103,7 +103,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:paddingRight="12dp"
-            android:text="1"
+            android:text=""
             android:textColor="@color/link_color"
             android:textSize="12sp" />
 

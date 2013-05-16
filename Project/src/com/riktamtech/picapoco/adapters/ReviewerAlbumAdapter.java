@@ -1,28 +1,28 @@
 package com.riktamtech.picapoco.adapters;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
+import android.net.wifi.p2p.WifiP2pManager.ServiceResponseListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
-import android.widget.ImageView.ScaleType;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
-import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.download.ImageDownloader;
 import com.riktamtech.picapoco.R;
+import com.riktamtech.picapoco.application.MyApplication.ServiceStatusListener;
+import com.riktamtech.picapoco.beans.CommentsBean;
 import com.riktamtech.picapoco.beans.ReviewerDesignBean;
 import com.riktamtech.picapoco.beans.ReviewerPageBeanDetails;
 import com.riktamtech.picapoco.services.ServiceRequestHelper;
@@ -63,9 +63,8 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		View row = convertView;
-
+		int leftPageIndex, rightPageIndex;
 		PageHolder holder = null;
 		if (row == null) {
 
@@ -73,14 +72,65 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 			row = inflater.inflate(R.layout.flip_item, parent, false);
 			holder = new PageHolder();
 
-			holder.flipItem = (FrameLayout) row.findViewById(R.id.flipItem);
+			holder.leftPage = (FrameLayout) row.findViewById(R.id.leftPage);
+			holder.rightPage = (FrameLayout) row.findViewById(R.id.rightPage);
+			holder.leftpageImage = (ImageView) holder.leftPage
+					.findViewById(R.id.leftPageImage);
+			holder.RightPageImage = (ImageView) holder.rightPage
+					.findViewById(R.id.rightPageImage);
 			row.setTag(holder);
 		} else {
+
 			holder = (PageHolder) row.getTag();
 
 		}
-		holder.flipItem.removeAllViews();
-		holder.flipItem.addView(PreparePage(position, parent));
+
+		if (position == 0) {
+			leftPageIndex = -1;
+			rightPageIndex = 1;
+		} else if (position == getCount() - 1) {
+			rightPageIndex = -1;
+			leftPageIndex = 0;
+		} else if (position == 1) {
+			rightPageIndex = 2;
+			leftPageIndex = -1;
+		} else if (position == getCount() - 2) {
+			rightPageIndex = -1;
+			leftPageIndex = DesignBean.reviewerPageBeanDetailsArrayList.size() - 1;
+		} else {
+			leftPageIndex = 2 * position - 1;
+			rightPageIndex = 2 * position;
+		}
+
+		if (leftPageIndex == -1) {
+			holder.leftpageImage.setVisibility(View.INVISIBLE);
+		} else {
+			holder.leftpageImage.setVisibility(View.VISIBLE);
+		}
+		if (rightPageIndex == -1) {
+			holder.RightPageImage.setVisibility(View.INVISIBLE);
+		} else {
+			holder.RightPageImage.setVisibility(View.VISIBLE);
+		}
+		if (leftPageIndex != -1) {
+			ReviewerPageBeanDetails leftPageBean = DesignBean.reviewerPageBeanDetailsArrayList
+					.get(leftPageIndex);
+
+			ImageLoader.getInstance().displayImage(
+					ServiceRequestHelper.picapocoReviewerPageBaseUrl
+							+ leftPageBean.designPageApiId + "/preview.jpg",
+					holder.leftpageImage);
+		}
+		if (rightPageIndex != -1) {
+			ReviewerPageBeanDetails rightPageBean = DesignBean.reviewerPageBeanDetailsArrayList
+					.get(rightPageIndex);
+
+			ImageLoader.getInstance().displayImage(
+					ServiceRequestHelper.picapocoReviewerPageBaseUrl
+							+ rightPageBean.designPageApiId + "/preview.jpg",
+					holder.RightPageImage);
+		}
+
 		return row;
 	}
 
@@ -114,7 +164,7 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 		if (leftPageIndex != -1) {
 			ReviewerPageBeanDetails leftPageBean = DesignBean.reviewerPageBeanDetailsArrayList
 					.get(leftPageIndex);
-			
+
 			for (int i = 0; i < leftPageBean.designLayoutGroupsArrayList.size(); i++) {
 
 				for (int j = 0; j < leftPageBean.designLayoutGroupsArrayList
@@ -240,7 +290,11 @@ public class ReviewerAlbumAdapter extends BaseAdapter {
 
 	static class PageHolder {
 
-		FrameLayout flipItem;
+		FrameLayout leftPage, rightPage;
+		ImageView leftpageImage, RightPageImage;
 
 	}
+
+	// Getting comments
+
 }

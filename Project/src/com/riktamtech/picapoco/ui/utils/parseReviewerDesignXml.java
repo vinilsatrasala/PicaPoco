@@ -32,7 +32,8 @@ public class parseReviewerDesignXml {
 			Document doc = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder().parse(is);
 			// TODO create Design details bean
-			Element designelement = (Element)doc.getElementsByTagName("designRequest").item(0);
+			Element designelement = (Element) doc.getElementsByTagName(
+					"designRequest").item(0);
 			designBean.externalId = XMLFunctionalities.getValue(designelement,
 					"externalId");
 			designBean.designOwnerId = XMLFunctionalities.getValue(
@@ -114,24 +115,36 @@ public class parseReviewerDesignXml {
 						imageDetailsBean.rotationAngle = Float
 								.parseFloat(XMLFunctionalities.getValue(
 										imageDetailsElements, "rotationAngle"));
-						imageDetailsBean.photoCenterX = Float
-								.parseFloat(XMLFunctionalities.getValue(
-										imageDetailsElements, "photoCenterX"));
-						imageDetailsBean.photoCenterY = Float
-								.parseFloat(XMLFunctionalities.getValue(
-										imageDetailsElements, "photoCenterY"));
-						imageDetailsBean.photoScalePercentX = Float
-								.parseFloat(XMLFunctionalities.getValue(
-										imageDetailsElements,
-										"photoScalePercentX"));
-						imageDetailsBean.photoScalePercentY = Float
-								.parseFloat(XMLFunctionalities.getValue(
-										imageDetailsElements,
-										"photoScalePercentY"));
-						imageDetailsBean.photoRotationAngle = Float
-								.parseFloat(XMLFunctionalities.getValue(
-										imageDetailsElements,
-										"photoRotationAngle"));
+						if (!XMLFunctionalities.getValue(imageDetailsElements,
+								"photoCenterX").equals(""))
+							imageDetailsBean.photoCenterX = Float
+									.parseFloat(XMLFunctionalities.getValue(
+											imageDetailsElements,
+											"photoCenterX"));
+						if (!XMLFunctionalities.getValue(imageDetailsElements,
+								"photoCenterY").equals(""))
+							imageDetailsBean.photoCenterY = Float
+									.parseFloat(XMLFunctionalities.getValue(
+											imageDetailsElements,
+											"photoCenterY"));
+						if (!XMLFunctionalities.getValue(imageDetailsElements,
+								"photoScalePercentX").equals(""))
+							imageDetailsBean.photoScalePercentX = Float
+									.parseFloat(XMLFunctionalities.getValue(
+											imageDetailsElements,
+											"photoScalePercentX"));
+						if (!XMLFunctionalities.getValue(imageDetailsElements,
+								"photoScalePercentY").equals(""))
+							imageDetailsBean.photoScalePercentY = Float
+									.parseFloat(XMLFunctionalities.getValue(
+											imageDetailsElements,
+											"photoScalePercentY"));
+						if (!XMLFunctionalities.getValue(imageDetailsElements,
+								"photoRotationAngle").equals(""))
+							imageDetailsBean.photoRotationAngle = Float
+									.parseFloat(XMLFunctionalities.getValue(
+											imageDetailsElements,
+											"photoRotationAngle"));
 						designLayoutGroups.reviewerImageDetailsArrayList
 								.add(imageDetailsBean);
 					}// End of Image nodes for loop
